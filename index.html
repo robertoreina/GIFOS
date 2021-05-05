@@ -19,7 +19,7 @@
     <!-- Inicio Header y Navbar -->
     <header>
         <span class="linea-top linea"></span>
-        <img id="logoPagina" src="" alt="logo gifos">
+        <a href="./index.html"><img id="logoPagina" src="" alt="logo gifos"> </a>
         <nav id="navegacion">
 
             <input type="checkbox" id="checkBurger">
@@ -67,14 +67,14 @@
         </div>
         <!-- Fin Sugerencia trending -->
         <!-- Inicio seccion resultados de busqueda -->
-        <section id="seccionResultadosBusqueda">
+        <section id="seccionResultadosBusqueda" class="seccionesGifos">
             <h2 id="titResultados" class=""></h2>
             <ul id="cntResultadosGifos" class="lista-gifos lista-gifos-resultados  hide">
             </ul>
             <img src="" alt="boton ver mas gifos" id="botonVerMasGifos" class="boton-verMasGifos hide">
 
             <!-- Contenindo sin resultados -->
-            <div id="cntSinResultadosGifos" class="hide">
+            <div id="cntSinResultadosGifos" class="cnt-sin-resultados hide">
                 <img src="./assets/icon-busqueda-sin-resultado.svg" alt="busqueda sin resultados">
                 <strong>Intenta con otra búsqueda.</strong>
             </div>
@@ -123,7 +123,7 @@
         <div>
             <p class="texto-pie">Compartir en:</p>
             <ul class="lista-redes">
-                <li><a  href="https://www.facebook.com/"><img id="linkFacebook" src="" alt="link facebok"></a></li>
+                <li><a href="https://www.facebook.com/"><img id="linkFacebook" src="" alt="link facebok"></a></li>
                 <li><a href="https://twitter.com/"><img id="linkTwitter" src="" alt="linj Twitter"></a></li>
                 <li><a href="https://www.instagram.com/"><img id="linkInstagram" src="" alt=""></a></li>
             </ul>
@@ -133,8 +133,10 @@
 
     </footer>
     <!-- Fin footer -->
-    <script src="./js/index.js" ></script>
-    <script src="./js/trendingGifos.js" type="module"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/gifos.js"></script>
+    <script src="./js/gifo-maximizados.js"></script>
+    <script src="./js/trendingGifos.js"></script>
     <script src="./js/footer.js"></script>
 </body>
 

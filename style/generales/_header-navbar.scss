@@ -105,7 +105,6 @@ nav{
             bottom: -13px;
             left: 47.5%;
         }
-
   
         @include desktop {
             //version desk
@@ -113,11 +112,10 @@ nav{
             padding: 0;
             text-transform: uppercase;
             font-size: 13px;
-            
+
             &::after{
                 content: none;
-            } 
-            
+            }  
         }
 
         a {

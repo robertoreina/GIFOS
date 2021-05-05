@@ -2,17 +2,6 @@ let body = document.getElementsByTagName("body")[0];
 let botonCrearGifo = document.getElementById("botonCrearGifo");
 let botonVerMasGifos = document.getElementById("botonVerMasGifos");
 
-let iGifoMax;
-let dataGifosMaximizados = [];
-let gifoMaximizado = document.getElementById("gifoMaximizado");
-let userGifoMax = document.getElementById("userGifoMax");
-let tituloGifoMax = document.getElementById("tituloGifoMax");
-let botonSalirGifoMax = document.getElementById("botonSalirGifoMax");
-let botonLeftGifoMax = document.getElementById("botonLeftGifoMax");
-let botonRightGifoMax = document.getElementById("botonRightGifoMax");
-let cntGifoMax = document.getElementById("cntGifoMax");
-let botonFavGifoMax = document.getElementById("botonFavGifoMax");
-
 let botonLeftTrending = document.getElementById("botonLeftTrending");
 let botonRightTrending = document.getElementById("botonRightTrending");
 
@@ -26,6 +15,9 @@ let countGifos = 0;
 let gifosTotales = 0
 let gifosFaltantes = 0;
 let gifosRenderizados = 0;
+
+let dataGifosFavoritos = [];
+
 
 // Funcionalidad del modo nocturno/diurno
 let modoActual = localStorage.getItem('modo-diurno-nocturno');
@@ -126,3 +118,32 @@ botonCrearGifo.addEventListener("mouseout", () => {
         botonCrearGifo.attributes.src.value = "./assets/CTA-crear-gifo-modo-noc.svg";
     }
 })
+
+// se renderizan los gifos favoritos que se encuentran en el localStorage
+
+let cntGifosFavoritos = document.getElementById("cntGifosFavoritos");
+let cntSinGifosFavoritos = document.getElementById("cntSinGifosFavoritos");
+
+
+if (localStorage.getItem('favoritos') != null) {
+    dataGifosFavoritos = (JSON.parse(localStorage.getItem('favoritos')));
+}
+
+let countGifosFavoritos = dataGifosFavoritos.length;
+console.log(countGifosFavoritos)
+if (countGifosFavoritos >= 1) {
+    cntSinGifosFavoritos.classList.add("hide")
+    cntGifosFavoritos.classList.remove("hide")
+
+    countGifosFavoritos = countGifosFavoritos > 12 ? 12 : countGifosFavoritos;
+
+    for (let i = 0; i < countGifosFavoritos; i++) {
+        const element = dataGifosFavoritos[i];
+        renderizarGifos(element, cntGifosFavoritos, i, dataGifosFavoritos);
+    }
+
+} else {
+    cntSinGifosFavoritos.classList.remove("hide")
+    cntGifosFavoritos.classList.add("hide")
+}
+

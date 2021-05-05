@@ -76,6 +76,52 @@ html {
   display: none;
 }
 
+.cnt-sin-resultados {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 450px;
+}
+
+.cnt-sin-resultados img {
+  width: 150px;
+  height: auto;
+}
+
+.cnt-sin-resultados strong {
+  font-size: 22px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.seccionesGifos {
+  width: 100vw;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 43px;
+}
+
+.seccionesGifos > img {
+  display: block;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 992px) {
+  .seccionesGifos {
+    margin-top: 80px;
+  }
+}
+
 .linea-top {
   position: absolute;
   top: 0;
@@ -597,19 +643,6 @@ nav {
   font-weight: bold;
 }
 
-#seccionResultadosBusqueda {
-  width: 100vw;
-  height: auto;
-  margin: 0 auto;
-  margin-top: 43px;
-}
-
-@media only screen and (min-width: 992px) {
-  #seccionResultadosBusqueda {
-    margin-top: 80px;
-  }
-}
-
 #cntResultadosGifos.hide {
   display: none;
 }
@@ -646,33 +679,6 @@ nav {
 
 .boton-verMasGifos.hide {
   display: none;
-}
-
-#cntSinResultadosGifos {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  height: 514px;
-}
-
-#cntSinResultadosGifos img {
-  width: 150px;
-  height: auto;
-}
-
-#cntSinResultadosGifos strong {
-  font-size: 22px;
-  line-height: 25px;
 }
 
 #cntSinResultadosGifos.hide {
@@ -1071,5 +1077,9 @@ footer .linea-button {
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+#cntSinGifosFavoritos.hide {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

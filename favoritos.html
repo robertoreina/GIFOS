@@ -19,7 +19,7 @@
     <!-- Inicio Header y Navbar -->
     <header>
         <span class="linea-top linea"></span>
-        <img id="logoPagina" src="" alt="logo gifos">
+        <a href="./index.html"><img id="logoPagina" src="" alt="logo gifos"> </a>
         <nav id="navegacion">
 
             <input type="checkbox" id="checkBurger">
@@ -40,19 +40,20 @@
     </header>
     <!-- Final Header y Navbar -->
     <!-- Inicio seccion principal y buscador -->
-    <main id="homeBuscador">
+    <main id="homeFavoritos">
 
         <!-- Inicio seccion resultados de busqueda -->
-        <section id="seccionResultadosBusqueda">
-            <h2 id="titResultados" class=""></h2>
-            <ul id="cntResultadosGifos" class="lista-gifos lista-gifos-resultados  hide">
+        <section id="seccionResultadosFavoritos" class="seccionesGifos">
+            <img src="./assets/icon-favoritos.svg" alt="icono Favoritos">
+            <h2 id="titFavoritos" class="titulo-secciones">Favoritos</h2>
+            <ul id="cntGifosFavoritos" class="lista-gifos lista-gifos-resultados hide">
             </ul>
             <img src="" alt="boton ver mas gifos" id="botonVerMasGifos" class="boton-verMasGifos hide">
-
+ 
             <!-- Contenindo sin resultados -->
-            <div id="cntSinResultadosGifos" class="hide">
-                <img src="./assets/icon-busqueda-sin-resultado.svg" alt="busqueda sin resultados">
-                <strong>Intenta con otra búsqueda.</strong>
+            <div id="cntSinGifosFavoritos" class="cnt-sin-resultados hide">
+                <img src="./assets/icon-fav-sin-contenido.svg" alt="Favoritos sin contenido">
+                <strong>¡Guarda tu primer GIFO en Favoritos<br>para que se muestre aquí!</strong>
             </div>
         </section>
         <!-- Fin seccion resultados de busqueda -->
@@ -110,7 +111,9 @@
 
     </footer>
     <!-- Fin footer -->
+    <script src="./js/gifos.js"></script>
     <script src="./js/favoritos.js"></script>
+    <script src="./js/gifo-maximizados.js"></script>
     <script src="./js/trendingGifos.js"></script>
     <script src="./js/footer.js"></script>
 </body>

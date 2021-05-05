@@ -85,3 +85,40 @@ html{
     display: none;
 }
 
+
+// Seccion busqueda, favoritos y mis gifos Sin resultados 
+.cnt-sin-resultados{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 450px;
+    
+    img{
+        width: 150px;
+        height: auto;
+    }
+    
+    strong{
+        font-size: 22px;
+        line-height: 25px;
+        text-align: center;
+    }
+}
+
+// Estilos generales de secciones de resultados de busqueda, favoritos y mis gifos.
+.seccionesGifos {
+    width: 100vw;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 43px;
+
+    >img{
+        display: block;
+        margin: 0 auto;
+    }
+
+    @include desktop {
+        margin-top: 80px;
+    }
+}

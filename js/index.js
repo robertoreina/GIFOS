@@ -1,5 +1,8 @@
 // window.onload = function () {
 
+
+// import {renderizarGifos} from './gifos.js';
+
 // Elementos de la seccion de busqueda
 let inputBuscador = document.getElementById("inputBuscador");
 let cntInputBusqueda = document.getElementById("cntInputBusqueda");
@@ -15,16 +18,7 @@ let body = document.getElementsByTagName("body")[0];
 let botonCrearGifo = document.getElementById("botonCrearGifo");
 let botonVerMasGifos = document.getElementById("botonVerMasGifos");
 
-let iGifoMax;
-let dataGifosMaximizados = [];
-let gifoMaximizado = document.getElementById("gifoMaximizado");
-let userGifoMax = document.getElementById("userGifoMax");
-let tituloGifoMax = document.getElementById("tituloGifoMax");
-let botonSalirGifoMax = document.getElementById("botonSalirGifoMax");
-let botonLeftGifoMax = document.getElementById("botonLeftGifoMax");
-let botonRightGifoMax = document.getElementById("botonRightGifoMax");
-let cntGifoMax = document.getElementById("cntGifoMax");
-let botonFavGifoMax = document.getElementById("botonFavGifoMax");
+
 
 let dataGifos = [];
 let dataGifosFavoritos = [];
@@ -335,114 +329,7 @@ function getGifos(buscar, offset) {
     });
 }
 
-/**
- * Renderiza  gifos en cada seccion de la pagina
- * @param {*} gifos 
- * @param {*} seccion 
- */
-function renderizarGifos(gifos, seccion, i, array) {
-
-    // idSeccion = document.getElementById(idSeccion);
-    let li = document.createElement("li");
-    li.setAttribute("tabindex", "0");
-
-    li.classList.add("cnt-card-gifos");
-    li.classList.add(`cls-${seccion.id}`);
-    console.log(seccion.id)
-    let gifo = document.createElement("img");
-    gifo.classList.add("gifo-min");
-    // gifo.setAttribute("src", gifos.images.fixed_height.url);
-    gifo.setAttribute("src", gifos.images.preview_gif.url);  // aqui se asigna la url del gif que
-    seccion.appendChild(li);
-    li.appendChild(gifo);
-
-    let div = document.createElement("div");
-    div.classList.add("cnt-botones-gifos");
-
-    let botonFavoritos = document.createElement("img");
-    botonFavoritos.id = "botonFavGifo" + i;
-    botonFavoritos.setAttribute("src", dataGifosFavoritos.some((element) => element.id === gifos.id) ? "./assets/icon-fav-active.svg" : "./assets/icon-fav.svg");
-
-    let botonDescargar = document.createElement("img");
-    botonDescargar.id = "botonDesGifo" + i;
-    botonDescargar.setAttribute("src", "./assets/icon-download.svg");
-
-    let botonMaximizar = document.createElement("img");
-    botonMaximizar.id = "botonMaxGifo" + i;
-    botonMaximizar.setAttribute("src", "./assets/icon-max-normal.svg");
-
-    div.appendChild(botonFavoritos)
-    div.appendChild(botonDescargar)
-    div.appendChild(botonMaximizar)
-    li.appendChild(div);
-
-    let userGifo = document.createElement("p");
-    userGifo.classList.add("user-gifos");
-    userGifo.innerHTML = gifos.username;
-
-    let tituloGifo = document.createElement("p");
-    tituloGifo.classList.add("titulo-gifos");
-    tituloGifo.innerHTML = gifos.title;
-
-    li.appendChild(userGifo);
-    li.appendChild(tituloGifo);
-
-    //Boton maximiza el gifo seleccionado
-    botonMaximizar.addEventListener("click", () => {
-        cntGifoMax.classList.remove("hide");
-        body.classList.add("overflow-hidden");
-        gifoMaximizado.setAttribute("src", gifos.images.original.url)
-        userGifoMax.innerHTML = gifos.username;
-        tituloGifoMax.innerHTML = gifos.title;
-        iGifoMax = i;
-        dataGifosMaximizados = array;
-    })
-
-    botonMaximizar.addEventListener("mouseover", () => {
-        botonMaximizar.setAttribute("src", "./assets/icon-max-hover.svg");
-    })
-
-    botonMaximizar.addEventListener("mouseout", () => {
-        botonMaximizar.setAttribute("src", "./assets/icon-max-normal.svg");
-    })
-
-    // Boton favorito del gifo
-    botonFavoritos.addEventListener("click", () => {
-
-        if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
-            gifoFavorito(false, gifos);
-            botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
-        } else {
-            gifoFavorito(true, gifos);
-            botonFavoritos.setAttribute("src", "./assets/icon-fav-active.svg");
-        }
-    })
-
-    botonFavoritos.addEventListener("mouseover", () => {
-        if (!dataGifosFavoritos.some((element) => element.id === gifos.id)) {
-            botonFavoritos.setAttribute("src", "./assets/icon-fav-hover.svg");
-        }
-    })
-
-    botonFavoritos.addEventListener("mouseout", () => {
-        if (!dataGifosFavoritos.some((element) => element.id === gifos.id)) {
-            botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
-        }
-    })
-
-    // Boton descargar gifo
-    botonDescargar.addEventListener("click", () => {
-
-    })
-
-    botonDescargar.addEventListener("mouseover", () => {
-        botonDescargar.setAttribute("src", "./assets/icon-download-hover.svg");
-    })
-
-    botonDescargar.addEventListener("mouseout", () => {
-        botonDescargar.setAttribute("src", "./assets/icon-download.svg");
-    })
-}
+//Aqui iba renderizarGifos
 
 // Funcionalidad del boton Ver mas gifos en la seccion princiapl, Mis Gifos y Favoritos
 botonVerMasGifos.addEventListener("mouseover", () => {
@@ -537,10 +424,10 @@ function pintarSugerenciasBusquedas() {
 let listaSugerenciaTrending = document.getElementById("listaSugerenciaTrending");
 let dataListaTrending = [];
 
-buscarTrending();
+buscarSugerenciaTrending();
 
-//busca categorias de trending 
-function buscarTrending() {
+//busca palabras de trending 
+function buscarSugerenciaTrending() {
 
     const endpoint = "https://api.giphy.com/v1/trending/searches?";
     const url = `${endpoint}api_key=${api_key}`;
@@ -569,125 +456,6 @@ function renderizarSugerenciaTrending() {
         })
     }
 }
-//Gifos Maximizados   
-
-// evento cerrar gifo maximizado
-botonSalirGifoMax.addEventListener("click", () => {
-    cntGifoMax.classList.add("hide");
-    body.classList.remove("overflow-hidden");
-    gifoMaximizado.setAttribute("src", "")
-})
-
-// Funcionamiento del boton desplazar hacia la izquierda  
-botonLeftGifoMax.addEventListener("click", () => {
-    gifoMaximizado.setAttribute("src", "")
-
-    iGifoMax -= 1;
-    if (iGifoMax < 0) {
-        iGifoMax = dataGifosMaximizados.length - 1;
-    }
-    cambiarGifoMax(iGifoMax);
-})
-
-botonLeftGifoMax.addEventListener("mouseover", () => {
-    if (modoActual === "D") {
-        botonLeftGifoMax.setAttribute("src", "./assets/button-slider-left-hover.svg")
-
-    } else {
-        botonLeftGifoMax.setAttribute("src", "./assets/button-slider-left-md-noct-2.svg")
-    }
-})
-
-botonLeftGifoMax.addEventListener("mouseout", () => {
-    if (modoActual === "D") {
-        botonLeftGifoMax.setAttribute("src", "./assets/button-slider-left.svg")
-
-    } else {
-        botonLeftGifoMax.setAttribute("src", "./assets/button-slider-left-md-noct.svg")
-    }
-})
-
-// Funcionamiento del boton desplazar hacia la derecha
-botonRightGifoMax.addEventListener("click", () => {
-
-    gifoMaximizado.setAttribute("src", "")
-    gifoMaximizado.classList.add("transicion-right")
-    gifoMaximizado.classList.add("margin-gifo-max")
-
-    iGifoMax += 1;
-    if (iGifoMax >= dataGifosMaximizados.length) {
-        iGifoMax = 0;
-    }
-    cambiarGifoMax(iGifoMax);
-})
-
-botonRightGifoMax.addEventListener("mouseout", () => {
-    if (modoActual === "D") {
-        botonRightGifoMax.setAttribute("src", "./assets/Button-slider-right.svg")
-    } else {
-        botonRightGifoMax.setAttribute("src", "./assets/button-slider-right-md-noct.svg")
-    }
-})
-
-botonRightGifoMax.addEventListener("mouseover", () => {
-    if (modoActual === "D") {
-        botonRightGifoMax.setAttribute("src", "./assets/Button-Slider-right-hover.svg")
-
-    } else {
-        botonRightGifoMax.setAttribute("src", "./assets/button-slider-right-md-noct-2.svg")
-    }
-})
-
-// Boton favorito del gifo maximizado
-botonFavGifoMax.addEventListener("click", () => {
-
-    if (dataGifosFavoritos.some((element) => element.id === dataGifosMaximizados[iGifoMax].id)) {
-        gifoFavorito(false, dataGifosMaximizados[iGifoMax]);
-        botonFavGifoMax.setAttribute("src", "./assets/icon-fav.svg");
-    } else {
-        gifoFavorito(true, dataGifosMaximizados[iGifoMax]);
-        botonFavGifoMax.setAttribute("src", "./assets/icon-fav-active.svg");
-    }
-})
-
-botonFavGifoMax.addEventListener("mouseover", () => {
-    if (!dataGifosFavoritos.some((element) => element.id === dataGifosMaximizados[iGifoMax].id)) {
-        botonFavGifoMax.setAttribute("src", "./assets/icon-fav-hover.svg");
-    }
-})
-
-botonFavGifoMax.addEventListener("mouseout", () => {
-    if (!dataGifosFavoritos.some((element) => element.id === dataGifosMaximizados[iGifoMax].id)) {
-        botonFavGifoMax.setAttribute("src", "./assets/icon-fav.svg");
-    }
-})
-
-// Boton descargar gifo Maximizado 
-botonDownloadGifoMax.addEventListener("click", () => {
-
-})
-
-botonDownloadGifoMax.addEventListener("mouseover", () => {
-    botonDownloadGifoMax.setAttribute("src", "./assets/icon-download-hover.svg");
-})
-
-botonDownloadGifoMax.addEventListener("mouseout", () => {
-    botonDownloadGifoMax.setAttribute("src", "./assets/icon-download.svg");
-})
-
-function cambiarGifoMax(posicionGifoMax) {
-    console.log(dataGifosMaximizados)
-    gifoMaximizado.setAttribute("src", dataGifosMaximizados[posicionGifoMax].images.original.url)
-    userGifoMax.innerHTML = dataGifosMaximizados[posicionGifoMax].username;
-    tituloGifoMax.innerHTML = dataGifosMaximizados[posicionGifoMax].title;
-
-    if (dataGifosFavoritos.some((element) => element.id === dataGifosMaximizados[posicionGifoMax].id)) {
-        botonFavGifoMax.setAttribute("src", "./assets/icon-fav-active.svg");
-    } else {
-        botonFavGifoMax.setAttribute("src", "./assets/icon-fav.svg");
-    }
-}
-
 // Agrega o remueve gifos favoritos del localStorage
 function gifoFavorito(favorito, gifo) {
 

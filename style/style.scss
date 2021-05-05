@@ -1,12 +1,13 @@
-@import "./mixins";
-@import "./general";
-@import "./header-navbar";
-@import "./seccionBuscador";
-@import "./cardGifos";
-@import "./seccionResultadosBusqueda";
-@import "./gifoMax";
-@import "./sugerenciaTrending";
-@import "./seccionTrending";
-@import "./footer";
+@import "./generales/mixins";
+@import "./generales/general";
+@import "./generales/header-navbar";
+@import "./buscador/seccionBuscador";
+@import "./generales/cardGifos";
+@import "./buscador/seccionResultadosBusqueda";
+@import "./generales/gifoMax";
+@import "./buscador/sugerenciaTrending";
+@import "./generales/seccionTrending";
+@import "./generales/footer";
+@import "./favoritos/seccionFavoritos";
 
 

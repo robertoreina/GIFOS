@@ -107,6 +107,16 @@
     })
 }
 
+// Agrega o remueve gifos favoritos del localStorage
+function gifoFavorito(favorito, gifo) {
 
+    if (favorito) {
+        dataGifosFavoritos.push(gifo)
+    } else {
+        let posicion = dataGifosFavoritos.find(elemento => elemento.id == gifo.id);
+        dataGifosFavoritos.splice(posicion, 1);
+    }
 
-export {renderizarGifos};
+    localStorage.setItem('favoritos', JSON.stringify(dataGifosFavoritos))
+}
+

@@ -1,4 +1,4 @@
-import {renderizarGifos} from './modules/gifos.js';
+// import {renderizarGifos} from './gifos.js';
 
 let cntTrendingGifos = document.getElementById("cntTrendingGifos");
 let deslizarTrending = 0;
