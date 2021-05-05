@@ -1,0 +1,108 @@
+#cntGifoMax{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    top: 0;
+
+    img.botones-deslizar {
+        display: none;
+        cursor: pointer;
+
+        @include desktop{
+            display: inline-block;
+            margin-bottom: 8rem;
+        }
+    }
+
+    #cntGifoMax2{
+        margin: 0 2rem;;
+    }
+
+    .gifo-max{
+        width: 84.8vw;
+        height: 41.95vh;
+        max-width: 695px;
+        max-height: 385px;
+
+        
+        @include tablet{
+            height: 50.13vh;
+        }
+    }
+
+    &.hide{
+        display: none;
+    }
+}   
+
+#cntDatosGifoMax{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    #cntDatosGifoMax2{
+        flex-basis: 75%;
+        
+        @include tablet{
+            flex-basis: 80%;
+        }
+
+        @include desktop{
+            flex-basis: 85%;
+        }
+   
+        .user-gifo-max{
+            font-family: $fontRoboto;
+            font-size: 15px;
+        }
+
+        .titulo-gifo-max{
+            font-family: $fontMontserrat;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+}
+
+.botones-gifo-max{
+    border-radius: 6px;
+    height: 50%;
+    cursor: pointer;
+}
+
+#botonSalirGifoMax{
+    position: absolute;
+    top: 8vh;
+    right: 11vw;
+    cursor: pointer;
+
+    @include desktop{
+        right: 15vw;
+        top: 10vh;
+    }
+}
+
+.modo-diurno{
+    #cntGifoMax{
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .botones-gifo-max{
+       border: 1px solid $colorMorado;
+    }
+
+}
+
+.modo-nocturno{
+    #cntGifoMax{
+        background-color: $coloGrisBgNocturno;
+    }
+    .botones-gifo-max{
+        border: 1px solid white;
+     }
+}

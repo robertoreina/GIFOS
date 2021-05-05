@@ -1,0 +1,56 @@
+//Contenedor de elementos
+#cntSugerenciaTrending {
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 63vw;
+    max-width: 402px;
+    height: auto;
+}
+
+
+.clsBorderSugerenciaTrending {
+    padding-bottom: 100px;
+}
+
+.modo-diurno .clsBorderSugerenciaTrending {
+    border-bottom: 1px solid $colorMorado;
+}
+
+.modo-nocturno .clsBorderSugerenciaTrending {
+    border-bottom: 1px solid white;
+}
+
+#titSugerenciaTrending {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 25px;
+    text-align: center;
+
+    @include desktop {
+        font-size: 18px;
+    }
+}
+
+#listaSugerenciaTrending {
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+    line-height: 25px;
+   
+    span{
+        cursor: pointer;
+        &:hover{
+           text-decoration: underline;
+        }
+    }
+
+    @include desktop {
+        font-size: 16px;
+    }
+}
+
+.modo-diurno{
+    #listaSugerenciaTrending{
+        color: $colorMorado;    
+    }
+}

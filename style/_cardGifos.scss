@@ -1,0 +1,97 @@
+//Estilos de los contenedores de gifos en todas las secciones(principal, trending, favoritos, mis gifos)
+
+.lista-gifos {
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 38px;
+    padding: 0;
+    list-style: none;
+    cursor: auto;
+
+    @include desktop {
+        margin-top: 59px;
+    }
+}
+
+// estilo general del contenedor de gifos
+.cnt-card-gifos {
+    position: relative;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: transparent;
+
+    &:hover {
+        background-color: $colorMoradoTransparente;
+        transition: background-color 0.5s;
+
+
+        & > .cnt-botones-gifos,
+        .user-gifos,
+        .titulo-gifos {
+            transition: visibility 0.5s;
+            visibility: visible;
+        }
+    }
+
+    .user-gifos, .titulo-gifos {
+        margin: 0 0 1rem 1rem;
+        font: $fontRoboto;
+        visibility: hidden;
+        color: white;
+    }
+}
+
+// gifos en seccion de resultados
+.lista-gifos-resultados .cnt-card-gifos {
+    width: 41.6vw;
+    height: 32vw;
+    max-width: 260px;
+    max-height: 200px;
+}
+
+// gifos en seccion de trending
+.lista-gifos-trending .cnt-card-gifos {
+    width: 64.8vw;
+    height: 49.7vw;
+    max-width: 357px;
+    max-height: 275px;
+
+    @include desktop{
+        width: 24.8vw;
+        height: 19.1vw;
+    }
+}
+
+.gifo-min {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -2;
+}
+
+.cnt-botones-gifos {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    visibility: hidden;
+    width: 110px;
+    display: flex;
+    justify-content: space-between;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.user-gifos {
+    font-size: 15px;
+}
+
+.titulo-gifos {
+    font-size: 16px;
+    font-weight: bold;
+}

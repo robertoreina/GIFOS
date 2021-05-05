@@ -1,0 +1,87 @@
+$fontMontserrat: 'Montserrat', sans-serif;
+$fontRoboto: 'Roboto', sans-serif;
+$colorMorado: #572EE5;
+$colorMoradoTransparente: hsla(253, 78%, 54%, 0.9);
+$colorGrisBgDiurno: #F3F5F8;
+$coloGrisBgNocturno: #37383C;
+$coloNegroBgNocturno: #222326;
+$colorVerde: #50E3C2;
+ 
+* {
+    box-sizing: border-box;
+    font-family: $fontMontserrat;   
+    background-color: transparent;
+}
+
+//Lineas de color en header y pie
+.linea{
+    display: block;
+    width: 100vw;
+    height: 5px;
+}
+
+body{
+    margin: 0;  
+
+    &.overflow-hidden{  
+        overflow: hidden;
+    }
+}
+
+.modo-diurno{
+    background-color: white;
+    transition:background-color .5s;
+
+    .linea{
+        background-color: $colorMorado;
+    }
+
+    h1, h2, h3 {
+       color: $colorMorado; 
+    }
+    
+    strong{
+        color: $colorVerde;
+    }
+
+    p{
+        color: black;
+    }
+}
+
+.modo-nocturno{
+    background-color: $coloGrisBgNocturno;
+    transition:background-color .5s;
+
+    .linea{
+        background-color: black;
+    }
+
+    h1, h2, h3, p, strong{
+        color: white
+     }
+}
+
+
+html{
+    font-size: 15px;
+}
+
+
+// Titulos de secciones
+.titulo-secciones{
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 30px;
+
+    @include desktop{
+        font-size: 25px;
+    }
+}
+
+// CLase genera para esconder elementos
+.hide {
+    display: none;
+}
+

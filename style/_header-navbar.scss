@@ -1,0 +1,220 @@
+.linea-top{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    width: 100vw;
+    height: 90px;
+    z-index: 20;
+
+    @include desktop{
+        position: sticky;
+        top: 0px; 
+    }
+}
+
+.box-shadown-header{
+    box-shadow:  0 2px 4px 1px  rgba(156,175,195,0.55);
+}
+
+#logoPagina {
+    width: 56px;
+    height: 49px;
+    margin-left: 1.2rem;
+    margin-top: 1.5rem;
+
+    @include desktop{
+        width: 68px;
+        height: 60px;
+        margin-left: 10vw;
+    }
+}
+
+#labelBurger {
+    position: absolute;
+    top: 2.5rem;
+    right: 1.5rem;
+    @include desktop {
+        display: none;
+    }
+}
+
+#iconoEquis {
+    display: none;
+    cursor: pointer;
+}
+
+#iconoBurger {
+    cursor: pointer;
+}
+
+//Lista de navbar
+nav{
+   flex-basis: 50vw;
+   height: fit-content;
+   min-width: 528px;
+   margin: auto 0;
+}
+
+#listaNavBar {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 5rem;
+    flex-flow: column nowrap;
+    list-style: none;
+    padding: 1rem 0 0 0;
+    margin: 1rem 0 0 0;
+    height: 100vh;
+    width: 100vw;
+
+    @include desktop {
+        //version desk
+        position: static;
+        flex-flow: row nowrap;
+        display: flex;
+        height: auto;
+        width: auto;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-right: 5vw;
+        padding: 0;
+    }
+
+    li {
+        text-align: center;
+        font-weight: bold;
+        padding-top: 10px;
+        line-height: 30px;
+        cursor: pointer;
+        position: relative;
+        margin-bottom:  1rem;
+
+        &::after{
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 40px;
+            background-color: white;
+            bottom: -13px;
+            left: 47.5%;
+        }
+
+  
+        @include desktop {
+            //version desk
+            margin: 0;
+            padding: 0;
+            text-transform: uppercase;
+            font-size: 13px;
+            
+            &::after{
+                content: none;
+            } 
+            
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none; 
+        }
+    }
+}
+
+// Hover y Active de link del navBar
+.linkHoverActive:hover{
+    @include desktop{
+        border-bottom: 2px solid #5ED7C6;
+    }
+}
+
+.linkHoverActive:active{
+    @include desktop{
+        color: #9CAFC3;
+        border-bottom: none;
+    }
+}
+
+//button de crear nuevo GIFOS
+#crearGifosDesk {
+    display: none;
+    @include desktop {
+        display: block;
+    }
+}
+#crearGifosMobile {
+    display: block;
+    @include desktop {
+        display: none;
+    }
+}
+
+// Funcionamiento Button hamburguesa 
+#checkBurger {
+    display: none;
+
+    &:checked ~ #labelBurger #iconoBurger {
+        display: none;
+    }
+
+    &:checked ~ #labelBurger #iconoEquis {
+        display: block;
+    }
+
+    &:checked ~ #listaNavBar {
+        display: flex;
+        // position: fixed;
+    }
+}
+
+//Estilos de Modo Diurno-Nocturno
+.modo-nocturno {
+
+    header, nav {
+        background-color: $coloGrisBgNocturno;
+    }
+
+    #listaNavBar {
+        background-color: black;
+
+        @include desktop {
+            background-color: $coloGrisBgNocturno;
+        }
+
+        li,
+        a {
+            color: white;
+        }
+    }
+}
+
+.modo-diurno {
+    
+    header, nav {
+        background-color: white;
+    }
+
+    #listaNavBar {
+        background-color: $colorMorado;
+        // opacity: 0.95;
+
+        @include desktop {
+            background-color: white;
+        }
+
+        li, a {
+            color: white;
+            @include desktop {
+                color: $colorMorado;
+            }
+        }
+    }
+
+}
+

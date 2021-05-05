@@ -1,0 +1,167 @@
+
+#homeBuscador {
+    margin-top: 10px;
+
+    @include desktop {
+        margin-top: 60px;
+    }
+}
+
+#tituloMain {
+    margin: 0 auto;
+    display: block;
+    font-size: 25px;
+    width: 76.27vw;
+    min-width: 286px;
+    max-width: 600px;
+    text-align: center;
+    line-height: 33px;
+
+    @include desktop {
+        font-size: 35px;
+        line-height: 50px;
+    }
+
+    span {
+        color:$colorVerde;
+    }
+}
+
+#imagenMain {
+    display: block;
+    width: 72.8vw;
+    margin: 0 auto;
+    margin-top: 2rem;
+    max-width: 399px;
+}
+
+// Buscador  activo/inactivo
+#cntBusqueda {
+    margin: 0 auto;
+    max-width: 551px;
+    width: 89vw;
+    position: relative;
+    
+    &.buscador-en-nav {
+        @include desktop {
+            position: fixed;
+            width: 20vw;
+            max-width: 300px;
+            min-width: 250px;
+            top: 20px;
+            left: 22vw;
+            z-index: 21;
+        }
+    }
+}
+
+// Buscador  activo/inactivo
+#boxBusqueda {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    align-items: center;
+    border-radius: 27px 27px;
+    overflow: hidden;
+}
+
+.clsFormBusquedaOn {
+    // @extend %estilos-contenedor-busqueda;
+    background-color: $coloGrisBgNocturno;
+    // height: 200px;
+    // animation-name: animaBuscador;
+    // animation-duration: 1s;
+    // animation-timing-function: ease-in-out;
+
+    // @keyframes animaBuscador {
+    //     from {
+    //         height: 50px;
+    //     }
+    //     to {
+    //         height: 200px;
+    //     }
+    //   }
+}
+
+#cntInputBusqueda {
+    height: 50px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#inputBuscador {
+    padding: 0;
+    margin: 0;
+    border: none;
+    height: 35px;
+    width: 63vw;
+    max-width: 450px;
+    font-size: 16px;
+    outline: none;
+    // background-color: transparent;
+}
+
+.borderCntOn {
+    border-bottom: 1px solid hsla(211, 25%, 69%, 0.5);
+    margin-bottom: 10px;
+}
+
+#listaSugerenciaBusqueda {  
+    list-style-image: url(/assets/icon-search-mod-noc.svg);
+    width: 100%;
+    padding-left: 55px;
+    margin: 0;
+
+    li {
+        font-family: $fontRoboto;
+        font-size: 16px;
+        font-weight: 400;
+        color: #9cafc3;
+        margin-bottom: 8px;
+        cursor: pointer;
+    }
+}
+
+.busquedaOff {
+    display: none;
+}
+
+.botonBusqueda {
+    cursor: pointer;
+}
+
+//Modo Diurno/Nocturno
+
+.modo-diurno{
+    #boxBusqueda{
+        border: 1px solid $colorMorado;
+    }
+    
+    .clsFormBusquedaOn {
+        background-color: white;
+    }
+
+    #inputBuscador{
+        color: black;
+    }
+}
+
+.modo-nocturno{
+    
+    #boxBusqueda{
+        border: 1px solid #ffffff;   
+     }
+
+    .clsFormBusquedaOn {
+        background-color: $coloGrisBgNocturno;
+    }
+
+    #inputBuscador{
+        color:white;
+    } 
+}
+
+
