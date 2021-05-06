@@ -1,3 +1,5 @@
+// script para manejar el funcionamiento de los gifos al estar maximizados
+
 let iGifoMax;
 let dataGifosMaximizados = [];
 let gifoMaximizado = document.getElementById("gifoMaximizado");

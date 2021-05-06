@@ -1,81 +1,85 @@
-$fontMontserrat: 'Montserrat', sans-serif;
-$fontRoboto: 'Roboto', sans-serif;
-$colorMorado: #572EE5;
+$fontMontserrat: "Montserrat", sans-serif;
+$fontRoboto: "Roboto", sans-serif;
+$colorMorado: #572ee5;
 $colorMoradoTransparente: hsla(253, 78%, 54%, 0.9);
-$colorGrisBgDiurno: #F3F5F8;
-$coloGrisBgNocturno: #37383C;
+$colorGrisBgDiurno: #f3f5f8;
+$coloGrisBgNocturno: #37383c;
 $coloNegroBgNocturno: #222326;
-$colorVerde: #50E3C2;
- 
+$colorVerde: #50e3c2;
+
 * {
     box-sizing: border-box;
-    font-family: $fontMontserrat;   
+    font-family: $fontMontserrat;
     background-color: transparent;
 }
 
 //Lineas de color en header y pie
-.linea{
+.linea {
     display: block;
     width: 100vw;
     height: 5px;
 }
 
-body{
-    margin: 0;  
+body {
+    margin: 0;
 
-    &.overflow-hidden{  
+    &.overflow-hidden {
         overflow: hidden;
     }
 }
 
-.modo-diurno{
+.modo-diurno {
     background-color: white;
-    transition:background-color .5s;
+    transition: background-color 0.5s;
 
-    .linea{
+    .linea {
         background-color: $colorMorado;
     }
 
-    h1, h2, h3 {
-       color: $colorMorado; 
+    h1,
+    h2,
+    h3 {
+        color: $colorMorado;
     }
-    
-    strong{
+
+    strong {
         color: $colorVerde;
     }
 
-    p{
+    p {
         color: black;
     }
 }
 
-.modo-nocturno{
+.modo-nocturno {
     background-color: $coloGrisBgNocturno;
-    transition:background-color .5s;
+    transition: background-color 0.5s;
 
-    .linea{
+    .linea {
         background-color: black;
     }
 
-    h1, h2, h3, p, strong{
-        color: white
-     }
+    h1,
+    h2,
+    h3,
+    p,
+    strong {
+        color: white;
+    }
 }
 
-
-html{
+html {
     font-size: 15px;
 }
 
-
 // Titulos de secciones
-.titulo-secciones{
+.titulo-secciones {
     font-size: 20px;
     text-align: center;
     margin: 0 auto;
     line-height: 30px;
 
-    @include desktop{
+    @include desktop {
         font-size: 25px;
     }
 }
@@ -85,21 +89,20 @@ html{
     display: none;
 }
 
-
-// Seccion busqueda, favoritos y mis gifos Sin resultados 
-.cnt-sin-resultados{
+// Seccion busqueda, favoritos y mis gifos Sin resultados
+.cnt-sin-resultados {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     height: 450px;
-    
-    img{
+
+    img {
         width: 150px;
         height: auto;
     }
-    
-    strong{
+
+    strong {
         font-size: 22px;
         line-height: 25px;
         text-align: center;
@@ -113,7 +116,7 @@ html{
     margin: 0 auto;
     margin-top: 43px;
 
-    >img{
+    > img {
         display: block;
         margin: 0 auto;
     }
@@ -121,4 +124,18 @@ html{
     @include desktop {
         margin-top: 80px;
     }
+}
+
+//Boton ver mas gifos en todas las secciones
+#botonVerMasGifos {
+    // Boton Ver Mas Gifos
+    // .boton-verMasGifos{
+    display: block;
+    margin: 3.5rem auto 5rem auto ;
+    cursor: pointer;
+
+    &.hide {
+        display: none;
+    }
+    // }
 }

@@ -21,20 +21,22 @@ body.overflow-hidden {
 
 .modo-diurno {
   background-color: white;
-  -webkit-transition: background-color .5s;
-  transition: background-color .5s;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
 }
 
 .modo-diurno .linea {
-  background-color: #572EE5;
+  background-color: #572ee5;
 }
 
-.modo-diurno h1, .modo-diurno h2, .modo-diurno h3 {
-  color: #572EE5;
+.modo-diurno h1,
+.modo-diurno h2,
+.modo-diurno h3 {
+  color: #572ee5;
 }
 
 .modo-diurno strong {
-  color: #50E3C2;
+  color: #50e3c2;
 }
 
 .modo-diurno p {
@@ -42,16 +44,20 @@ body.overflow-hidden {
 }
 
 .modo-nocturno {
-  background-color: #37383C;
-  -webkit-transition: background-color .5s;
-  transition: background-color .5s;
+  background-color: #37383c;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
 }
 
 .modo-nocturno .linea {
   background-color: black;
 }
 
-.modo-nocturno h1, .modo-nocturno h2, .modo-nocturno h3, .modo-nocturno p, .modo-nocturno strong {
+.modo-nocturno h1,
+.modo-nocturno h2,
+.modo-nocturno h3,
+.modo-nocturno p,
+.modo-nocturno strong {
   color: white;
 }
 
@@ -120,6 +126,16 @@ html {
   .seccionesGifos {
     margin-top: 80px;
   }
+}
+
+#botonVerMasGifos {
+  display: block;
+  margin: 3.5rem auto 5rem auto;
+  cursor: pointer;
+}
+
+#botonVerMasGifos.hide {
+  display: none;
 }
 
 .linea-top {
@@ -332,7 +348,7 @@ nav {
 }
 
 .modo-nocturno header, .modo-nocturno nav {
-  background-color: #37383C;
+  background-color: #37383c;
 }
 
 .modo-nocturno #listaNavBar {
@@ -341,7 +357,7 @@ nav {
 
 @media only screen and (min-width: 992px) {
   .modo-nocturno #listaNavBar {
-    background-color: #37383C;
+    background-color: #37383c;
   }
 }
 
@@ -355,7 +371,7 @@ nav {
 }
 
 .modo-diurno #listaNavBar {
-  background-color: #572EE5;
+  background-color: #572ee5;
 }
 
 @media only screen and (min-width: 992px) {
@@ -370,7 +386,7 @@ nav {
 
 @media only screen and (min-width: 992px) {
   .modo-diurno #listaNavBar li, .modo-diurno #listaNavBar a {
-    color: #572EE5;
+    color: #572ee5;
   }
 }
 
@@ -403,7 +419,7 @@ nav {
 }
 
 #tituloMain span {
-  color: #50E3C2;
+  color: #50e3c2;
 }
 
 #imagenMain {
@@ -451,7 +467,7 @@ nav {
 }
 
 .clsFormBusquedaOn {
-  background-color: #37383C;
+  background-color: #37383c;
 }
 
 #cntInputBusqueda {
@@ -509,7 +525,7 @@ nav {
 }
 
 .modo-diurno #boxBusqueda {
-  border: 1px solid #572EE5;
+  border: 1px solid #572ee5;
 }
 
 .modo-diurno .clsFormBusquedaOn {
@@ -525,7 +541,7 @@ nav {
 }
 
 .modo-nocturno .clsFormBusquedaOn {
-  background-color: #37383C;
+  background-color: #37383c;
 }
 
 .modo-nocturno #inputBuscador {
@@ -803,11 +819,11 @@ nav {
 }
 
 .modo-diurno .botones-gifo-max {
-  border: 1px solid #572EE5;
+  border: 1px solid #572ee5;
 }
 
 .modo-nocturno #cntGifoMax {
-  background-color: #37383C;
+  background-color: #37383c;
 }
 
 .modo-nocturno .botones-gifo-max {
@@ -827,7 +843,7 @@ nav {
 }
 
 .modo-diurno .clsBorderSugerenciaTrending {
-  border-bottom: 1px solid #572EE5;
+  border-bottom: 1px solid #572ee5;
 }
 
 .modo-nocturno .clsBorderSugerenciaTrending {
@@ -869,7 +885,7 @@ nav {
 }
 
 .modo-diurno #listaSugerenciaTrending {
-  color: #572EE5;
+  color: #572ee5;
 }
 
 #seccionTrending {
@@ -983,7 +999,7 @@ nav {
 }
 
 .modo-diurno #seccionTrending {
-  background-color: #F3F5F8;
+  background-color: #f3f5f8;
 }
 
 .modo-nocturno #seccionTrending {

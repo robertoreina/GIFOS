@@ -1,5 +1,5 @@
 
-
+// Script principal para el manejo del footer
 
 linkFacebook.addEventListener("mouseout", () => {
 

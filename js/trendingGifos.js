@@ -1,4 +1,4 @@
-// import {renderizarGifos} from './gifos.js';
+// script para el manejo de la seccion trending gifos 
 
 let cntTrendingGifos = document.getElementById("cntTrendingGifos");
 let deslizarTrending = 0;

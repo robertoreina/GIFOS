@@ -1,8 +1,14 @@
+// script contiene funciones y manejo para renderizar las card 
+// de los gifos en todas las paginas/Secciones (Resultado de Busqueda - Favoritos - Mis Gifos - Trending)
+
 /**
- * Renderiza  gifos en cada seccion de la pagina
- * @param {*} gifos 
- * @param {*} seccion 
- */
+ * Renderiza  card de gifo en contenedor recibido en paramentro seccion
+ * 
+ * @param {*} gifos  Objeto gifo a renderizar
+ * @param {*} seccion objeto del contenedor donde se va a renderizar 
+ * @param {*} enviar indice del array que contiene el objeto 
+ * @param {*} array array que contiene el objeto con los gifos 
+ */  
  function renderizarGifos(gifos, seccion, i, array) {
 
     // idSeccion = document.getElementById(idSeccion);
@@ -59,6 +65,12 @@
         tituloGifoMax.innerHTML = gifos.title;
         iGifoMax = i;
         dataGifosMaximizados = array;
+
+        if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
+            botonFavGifoMax.setAttribute("src", "./assets/icon-fav-active.svg");
+        } else {
+            botonFavGifoMax.setAttribute("src", "./assets/icon-fav.svg");
+        }
     })
 
     botonMaximizar.addEventListener("mouseover", () => {
@@ -93,6 +105,14 @@
         }
     })
 
+    li.addEventListener("mouseenter", () => {
+        if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
+            botonFavoritos.setAttribute("src", "./assets/icon-fav-active.svg");
+        } else {
+            botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
+        }
+    })
+
     // Boton descargar gifo
     botonDescargar.addEventListener("click", () => {
 
@@ -113,10 +133,28 @@ function gifoFavorito(favorito, gifo) {
     if (favorito) {
         dataGifosFavoritos.push(gifo)
     } else {
-        let posicion = dataGifosFavoritos.find(elemento => elemento.id == gifo.id);
+        let posicion = dataGifosFavoritos.findIndex(elemento => elemento.id == gifo.id);
+        console.log(posicion);
+
         dataGifosFavoritos.splice(posicion, 1);
     }
-
     localStorage.setItem('favoritos', JSON.stringify(dataGifosFavoritos))
 }
+
+// Funcionalidad del boton Ver mas gifos en la seccion princiapl, Mis Gifos y Favoritos
+botonVerMasGifos.addEventListener("mouseover", () => {
+    if (modoActual === 'D') {
+        botonVerMasGifos.attributes.src.value = "./assets/CTA-ver-mas-hover.svg";
+    } else {
+        botonVerMasGifos.attributes.src.value = "./assets/CTA-ver+hover-modo-noc.svg";
+    }
+});
+
+botonVerMasGifos.addEventListener("mouseout", () => {
+    if (modoActual === 'D') {
+        botonVerMasGifos.attributes.src.value = "./assets/CTA-ver-mas.svg";
+    } else {
+        botonVerMasGifos.attributes.src.value = "./assets/CTA-ver+-modo-noc.svg";
+    }
+});
 

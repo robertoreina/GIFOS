@@ -1,3 +1,6 @@
+// script principal de la pagina favoritos
+
+
 let body = document.getElementsByTagName("body")[0];
 let botonCrearGifo = document.getElementById("botonCrearGifo");
 let botonVerMasGifos = document.getElementById("botonVerMasGifos");
@@ -18,6 +21,7 @@ let gifosRenderizados = 0;
 
 let dataGifosFavoritos = [];
 
+console.log(location.pathname)
 
 // Funcionalidad del modo nocturno/diurno
 let modoActual = localStorage.getItem('modo-diurno-nocturno');
@@ -120,30 +124,72 @@ botonCrearGifo.addEventListener("mouseout", () => {
 })
 
 // se renderizan los gifos favoritos que se encuentran en el localStorage
-
 let cntGifosFavoritos = document.getElementById("cntGifosFavoritos");
 let cntSinGifosFavoritos = document.getElementById("cntSinGifosFavoritos");
-
 
 if (localStorage.getItem('favoritos') != null) {
     dataGifosFavoritos = (JSON.parse(localStorage.getItem('favoritos')));
 }
 
-let countGifosFavoritos = dataGifosFavoritos.length;
-console.log(countGifosFavoritos)
-if (countGifosFavoritos >= 1) {
-    cntSinGifosFavoritos.classList.add("hide")
-    cntGifosFavoritos.classList.remove("hide")
-
-    countGifosFavoritos = countGifosFavoritos > 12 ? 12 : countGifosFavoritos;
-
-    for (let i = 0; i < countGifosFavoritos; i++) {
-        const element = dataGifosFavoritos[i];
-        renderizarGifos(element, cntGifosFavoritos, i, dataGifosFavoritos);
-    }
-
+cntSinGifosFavoritos.classList.add("hide")
+if (dataGifosFavoritos.length >= 1) {
+    obtenerFavoritosMisGifos(dataGifosFavoritos, cntGifosFavoritos, 0);
 } else {
     cntSinGifosFavoritos.classList.remove("hide")
-    cntGifosFavoritos.classList.add("hide")
+    cntGifosFavoritos.classList.add("hide");
 }
+
+/**
+ * Funcion para obtener y renderizar los gifos en las secciones Favoritos y Mis Gifos
+ * @param {*} arrayGifos recibe array de objeto que contiene los gifos favoritos/mis gifos
+ * @param {*} seccion recibe objeto del contenedor donde se van a renderizar los gifos
+ * @param {*} iRender recibe el index desde donde se van a leer los gifos en array
+ */
+function obtenerFavoritosMisGifos(arrayGifos, seccion, iRender) {
+
+    seccion.classList.remove("hide")
+   if (iRender === 0) { // la primera vez que se renderizan los gifos favoritos
+        countGifos = arrayGifos.length > 12 ? 12 : arrayGifos.length;
+   } else{
+        countGifos += gifosFaltantes > 12 ? 12 : gifosFaltantes;
+   }
+
+    for (let i = iRender; i < countGifos; i++) {
+        renderizarGifos(arrayGifos[i], seccion, i, arrayGifos);
+        gifosRenderizados = i + 1;
+    }
+    // gifosFaltantes = arrayGifos.length - gifosRenderizados;
+    // console.log("gifosTotales: " + arrayGifos.length,
+    //     "gifosRenderizados: " + gifosRenderizados,
+    //     "countGifos : " + countGifos,
+    //     "gifosFaltantes: ", gifosFaltantes);
+
+    if (gifosFaltantes > 0) {
+        botonVerMasGifos.classList.remove("hide");
+    } else {
+        botonVerMasGifos.classList.add("hide");
+    }
+}
+
+// boton ver mas gifos favoritos
+botonVerMasGifos.addEventListener("click", () =>{
+    obtenerFavoritosMisGifos(dataGifosFavoritos, cntGifosFavoritos, gifosRenderizados);
+})
+
+
+// Evento scroll window para activar el box shadown del header
+window.addEventListener('scroll', () => {
+    let header = document.getElementsByTagName("Header")[0];
+    let coordHeader = header.getBoundingClientRect();
+
+    //Activa box-shadown del nav
+    let tituloSecciones = document.getElementsByClassName("titulo-secciones")[0].getBoundingClientRect();
+    if (tituloSecciones.top <= coordHeader.bottom) {
+        header.classList.add("box-shadown-header")
+    } else {
+        header.classList.remove("box-shadown-header")
+    }
+});
+
+
 

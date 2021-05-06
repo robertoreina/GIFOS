@@ -284,6 +284,8 @@ function buscarGifos(buscar) {
 
             } else {
                 cntSinResultadosGifos.classList.remove("hide")
+                botonVerMasGifos.classList.add("hide");
+
             }
             window.scroll({
                 top: 700,
@@ -331,22 +333,7 @@ function getGifos(buscar, offset) {
 
 //Aqui iba renderizarGifos
 
-// Funcionalidad del boton Ver mas gifos en la seccion princiapl, Mis Gifos y Favoritos
-botonVerMasGifos.addEventListener("mouseover", () => {
-    if (modoActual === 'D') {
-        botonVerMasGifos.attributes.src.value = "./assets/CTA-ver-mas-hover.svg";
-    } else {
-        botonVerMasGifos.attributes.src.value = "./assets/CTA-ver+hover-modo-noc.svg";
-    }
-});
 
-botonVerMasGifos.addEventListener("mouseout", () => {
-    if (modoActual === 'D') {
-        botonVerMasGifos.attributes.src.value = "./assets/CTA-ver-mas.svg";
-    } else {
-        botonVerMasGifos.attributes.src.value = "./assets/CTA-ver+-modo-noc.svg";
-    }
-});
 
 botonVerMasGifos.addEventListener("click", () => {
 
@@ -456,16 +443,5 @@ function renderizarSugerenciaTrending() {
         })
     }
 }
-// Agrega o remueve gifos favoritos del localStorage
-function gifoFavorito(favorito, gifo) {
 
-    if (favorito) {
-        dataGifosFavoritos.push(gifo)
-    } else {
-        let posicion = dataGifosFavoritos.find(elemento => elemento.id == gifo.id);
-        dataGifosFavoritos.splice(posicion, 1);
-    }
-
-    localStorage.setItem('favoritos', JSON.stringify(dataGifosFavoritos))
-}
 // }
