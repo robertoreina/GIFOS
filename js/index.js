@@ -146,7 +146,8 @@ botonCrearGifo.addEventListener("mouseout", () => {
     }
 })
 
-// Evento scroll window
+// Evento scroll window para ubicar buscador en el nav y activar el box shadown del header
+
 window.addEventListener('scroll', () => {
     let cntBusqueda = document.getElementById("cntBusqueda");
     let header = document.getElementsByTagName("Header")[0];
@@ -176,7 +177,10 @@ inputBuscador.addEventListener("keypress", (e) => {
 
     // Ejecucion de funcion Buscar en caso de que se presione INTRO
     if (e.keyCode === 13 && inputBuscador.value != '') {
-        buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
+        if (!buscadorEnNav) {
+            buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
+        }
+        
         buscarGifos(inputBuscador.value);
     }
 });
@@ -331,10 +335,7 @@ function getGifos(buscar, offset) {
     });
 }
 
-//Aqui iba renderizarGifos
-
-
-
+// Funcionamiento del boton ver mas solo para la seccion de resultados de busqueda
 botonVerMasGifos.addEventListener("click", () => {
 
     getGifos(valorBuscar, gifosRenderizados)

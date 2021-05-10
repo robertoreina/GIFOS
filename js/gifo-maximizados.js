@@ -10,6 +10,7 @@ let botonLeftGifoMax = document.getElementById("botonLeftGifoMax");
 let botonRightGifoMax = document.getElementById("botonRightGifoMax");
 let cntGifoMax = document.getElementById("cntGifoMax");
 let botonFavGifoMax = document.getElementById("botonFavGifoMax");
+let botonDeleteGifoMax = document.getElementById("botonDeleteGifoMax");
 
 
 //Gifos Maximizados   
@@ -117,6 +118,21 @@ botonDownloadGifoMax.addEventListener("mouseout", () => {
     botonDownloadGifoMax.setAttribute("src", "./assets/icon-download.svg");
 })
 
+// Boton eliminar gifo de la seccion mis gifos 
+botonDeleteGifoMax.addEventListener("click", () => {
+    deleteMisGifos(dataGifosMaximizados[iGifoMax].id);
+})
+
+botonDeleteGifoMax.addEventListener("mouseover", () => {
+    botonDeleteGifoMax.setAttribute("src", "./assets/icon-trash-hover.svg");
+})
+
+botonDeleteGifoMax.addEventListener("mouseout", () => {
+    botonDeleteGifoMax.setAttribute("src", "./assets/icon-trash-normal.svg");
+})
+
+
+// realiza el cambio de gifo en la seccion gifo max
 function cambiarGifoMax(posicionGifoMax) {
     console.log(dataGifosMaximizados)
     gifoMaximizado.setAttribute("src", dataGifosMaximizados[posicionGifoMax].images.original.url)
@@ -129,3 +145,14 @@ function cambiarGifoMax(posicionGifoMax) {
         botonFavGifoMax.setAttribute("src", "./assets/icon-fav.svg");
     }
 }
+
+
+function deleteMisGifos(idGifo) {
+
+    let posicion = dataIdMisGifos.findIndex(elemento => elemento.id == idGifo);
+    dataIdMisGifos.splice(posicion, 1);
+    localStorage.setItem('id-mis-gifos', JSON.stringify(dataIdMisGifos))
+    console.log(posicion);
+    location.reload();
+}   
+

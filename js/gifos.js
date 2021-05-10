@@ -8,8 +8,8 @@
  * @param {*} seccion objeto del contenedor donde se va a renderizar 
  * @param {*} enviar indice del array que contiene el objeto 
  * @param {*} array array que contiene el objeto con los gifos 
- */  
- function renderizarGifos(gifos, seccion, i, array) {
+ */
+function renderizarGifos(gifos, seccion, i, array) {
 
     // idSeccion = document.getElementById(idSeccion);
     let li = document.createElement("li");
@@ -17,7 +17,6 @@
 
     li.classList.add("cnt-card-gifos");
     li.classList.add(`cls-${seccion.id}`);
-    console.log(seccion.id)
     let gifo = document.createElement("img");
     gifo.classList.add("gifo-min");
     // gifo.setAttribute("src", gifos.images.fixed_height.url);
@@ -28,10 +27,6 @@
     let div = document.createElement("div");
     div.classList.add("cnt-botones-gifos");
 
-    let botonFavoritos = document.createElement("img");
-    botonFavoritos.id = "botonFavGifo" + i;
-    botonFavoritos.setAttribute("src", dataGifosFavoritos.some((element) => element.id === gifos.id) ? "./assets/icon-fav-active.svg" : "./assets/icon-fav.svg");
-
     let botonDescargar = document.createElement("img");
     botonDescargar.id = "botonDesGifo" + i;
     botonDescargar.setAttribute("src", "./assets/icon-download.svg");
@@ -40,7 +35,68 @@
     botonMaximizar.id = "botonMaxGifo" + i;
     botonMaximizar.setAttribute("src", "./assets/icon-max-normal.svg");
 
-    div.appendChild(botonFavoritos)
+    if (seccion.id == 'cntGifosMisGifos') {
+        let botonEliminar = document.createElement("img");
+        botonEliminar.id = "botonEliGifo" + i;
+        botonEliminar.setAttribute("src", "./assets/icon-trash-normal.svg");
+
+        // Boton eliminar gifo de la seccion mis gifos 
+        botonEliminar.addEventListener("click", () => {
+            deleteMisGifos(gifos.id);
+        })
+
+        botonEliminar.addEventListener("mouseover", () => {
+            botonEliminar.setAttribute("src", "./assets/icon-trash-hover.svg");
+        })
+
+        botonEliminar.addEventListener("mouseout", () => {
+            botonEliminar.setAttribute("src", "./assets/icon-trash-normal.svg");
+        })
+
+        div.appendChild(botonEliminar)
+
+
+    } else {
+
+        let botonFavoritos = document.createElement("img");
+        botonFavoritos.id = "botonFavGifo" + i;
+        botonFavoritos.setAttribute("src", dataGifosFavoritos.some((element) => element.id === gifos.id) ? "./assets/icon-fav-active.svg" : "./assets/icon-fav.svg");
+        div.appendChild(botonFavoritos)
+
+        // Boton favorito del gifo
+        botonFavoritos.addEventListener("click", () => {
+
+            if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
+                gifoFavorito(false, gifos);
+                botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
+            } else {
+                gifoFavorito(true, gifos);
+                botonFavoritos.setAttribute("src", "./assets/icon-fav-active.svg");
+            }
+        })
+
+        botonFavoritos.addEventListener("mouseover", () => {
+            if (!dataGifosFavoritos.some((element) => element.id === gifos.id)) {
+                botonFavoritos.setAttribute("src", "./assets/icon-fav-hover.svg");
+            }
+        })
+
+        botonFavoritos.addEventListener("mouseout", () => {
+            if (!dataGifosFavoritos.some((element) => element.id === gifos.id)) {
+                botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
+            }
+        })
+
+
+        li.addEventListener("mouseenter", () => {
+            if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
+                botonFavoritos.setAttribute("src", "./assets/icon-fav-active.svg");
+            } else {
+                botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
+            }
+        })
+    }
+
     div.appendChild(botonDescargar)
     div.appendChild(botonMaximizar)
     li.appendChild(div);
@@ -81,37 +137,6 @@
         botonMaximizar.setAttribute("src", "./assets/icon-max-normal.svg");
     })
 
-    // Boton favorito del gifo
-    botonFavoritos.addEventListener("click", () => {
-
-        if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
-            gifoFavorito(false, gifos);
-            botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
-        } else {
-            gifoFavorito(true, gifos);
-            botonFavoritos.setAttribute("src", "./assets/icon-fav-active.svg");
-        }
-    })
-
-    botonFavoritos.addEventListener("mouseover", () => {
-        if (!dataGifosFavoritos.some((element) => element.id === gifos.id)) {
-            botonFavoritos.setAttribute("src", "./assets/icon-fav-hover.svg");
-        }
-    })
-
-    botonFavoritos.addEventListener("mouseout", () => {
-        if (!dataGifosFavoritos.some((element) => element.id === gifos.id)) {
-            botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
-        }
-    })
-
-    li.addEventListener("mouseenter", () => {
-        if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
-            botonFavoritos.setAttribute("src", "./assets/icon-fav-active.svg");
-        } else {
-            botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
-        }
-    })
 
     // Boton descargar gifo
     botonDescargar.addEventListener("click", () => {
@@ -134,7 +159,6 @@ function gifoFavorito(favorito, gifo) {
         dataGifosFavoritos.push(gifo)
     } else {
         let posicion = dataGifosFavoritos.findIndex(elemento => elemento.id == gifo.id);
-        console.log(posicion);
 
         dataGifosFavoritos.splice(posicion, 1);
     }

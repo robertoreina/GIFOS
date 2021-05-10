@@ -1,0 +1,14 @@
+#cntSinGifosMisGifos.hide{
+    display: none;
+}
+
+#cntSinGifosMisGifos{
+
+    a{
+        text-decoration: none;
+
+        :hover{
+            text-decoration: underline;
+        }
+    }
+}

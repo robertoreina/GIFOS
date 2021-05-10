@@ -21,16 +21,7 @@
     width: 88.8vw;
 }
 
-// Boton Ver Mas Gifos
-.boton-verMasGifos{
-    display: block;
-    margin: 5rem auto;
-    cursor: pointer;
 
-    &.hide{
-        display: none;
-    }
-}
 
 #cntSinResultadosGifos.hide{
     display: none;

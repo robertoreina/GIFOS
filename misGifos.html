@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIFOS</title>
+    <link rel="shortcut icon" href="/assets/logo-mobile.svg">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body class="">
+    <!-- Inicio Header y Navbar -->
+    <header>
+        <span class="linea-top linea"></span>
+        <a href="./index.html"><img id="logoPagina" src="" alt="logo gifos"> </a>
+        <nav id="navegacion">
+
+            <input type="checkbox" id="checkBurger">
+            <label id="labelBurger" for="checkBurger">
+                <img id="iconoBurger" src="" alt="menu burger">
+                <img id="iconoEquis" src="" alt="boton salir">
+            </label>
+            <ul id="listaNavBar">
+                <li id="modoDiurnoNocturno" class="linkHoverActive"> <span></span></li>
+                <li><a href="./favoritos.html" class="linkHoverActive">Favoritos</a> <span></span></li>
+                <li><a href="./misGifos.html" class="linkHoverActive">Mis GIFOS</a><span></span></li>
+                <li id="crearGifosMobile"><a href="./crearGifo.html" class="linkHoverActive">Crear
+                        GIFOS</a></li>
+                <li id="crearGifosDesk"><a href="./crearGifo.html">
+                        <img id="botonCrearGifo" src="" alt="Boton crear nuevo GIFOS"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Final Header y Navbar -->
+    <!-- Inicio seccion principal y buscador -->
+    <main id="homeMisGifos">
+
+        <!-- Inicio seccion mis gifos -->
+        <section id="seccionResultadosMisGifos" class="seccionesGifos">
+            <img src="./assets/icon-mis-gifos.svg" alt="icono mis gifos">
+            <h2 id="titMisGifos" class="titulo-secciones">Mis GIFOS</h2>
+            <ul id="cntGifosMisGifos" class="lista-gifos lista-gifos-resultados hide">
+            </ul>
+            <img src="" alt="boton ver mas gifos" id="botonVerMasGifos" class="boton-verMasGifos hide">
+
+            <!-- Contenindo sin resultados -->
+            <div id="cntSinGifosMisGifos" class="cnt-sin-resultados">
+                <img src="./assets/icon-mis-gifos-sin-contenido.svg" alt="Mis Gifos sin contenido">
+                <a href="./crearGifo.html"><strong>¡Anímate a crear tu primer GIFO!</strong></a>
+            </div>
+        </section>
+        <!-- Fin seccion resultados de busqueda -->
+    </main>
+    <!-- Fin seccion principal y buscador -->
+
+    <!-- Seccion para los GIFOS maximizados -->
+    <div id="cntGifoMax" class="hide">
+        <img id="botonSalirGifoMax" src="" alt="boton deslizar hacia la izquierda">
+        <img id="botonLeftGifoMax" src="" alt="boton deslizar hacia la izquierda" class="botones-deslizar">
+        <div id="cntGifoMax2">
+            <img id="gifoMaximizado" class="gifo-max" src="" alt="">
+            <div id="cntDatosGifoMax">
+                <div id="cntDatosGifoMax2">
+                    <p id="userGifoMax" class="user-gifo-max">User</p>
+                    <p id="tituloGifoMax" class="titulo-gifo-max">Titulo</p>
+                </div>
+                <img id="botonFavGifoMax" class="botones-gifo-max hide" src="./assets/icon-fav.svg"
+                    alt="boton favorito">
+                <img id="botonDeleteGifoMax" class="botones-gifo-max" src="./assets/icon-trash-normal.svg" alt="boton eliminar">
+                <img id="botonDownloadGifoMax" class="botones-gifo-max" src="./assets/icon-download.svg"
+                    alt="boton descargar">
+            </div>
+        </div>
+        <img id="botonRightGifoMax" src="./assets/Button-Slider-right.svg" alt="" class="botones-deslizar">
+    </div>
+
+    <!-- Inicio seccion Trending -->
+    <section id="seccionTrending">
+        <h2 class="titulo-secciones">Trending GIFOS</h2>
+        <p>Mira los últimos <br> GIFO de nuestra comunidad.</p>
+        <div class="contenedor-trending-a">
+            <img id="botonLeftTrending" src="" alt="boton deslizar hacia la izquierda" class="botones-deslizar">
+            <div class="contenedor-trending-b">
+                <ul id="cntTrendingGifos" class="lista-gifos lista-gifos-trending">
+
+                </ul>
+            </div>
+            <img id="botonRightTrending" src="" alt="" class="botones-deslizar">
+        </div>
+
+    </section>
+    <!-- Fin seccion Trending -->
+
+    <!-- Inicio footer -->
+    <footer id="pie">
+        <div>
+            <p class="texto-pie">Compartir en:</p>
+            <ul class="lista-redes">
+                <li><a href="https://www.facebook.com/"><img id="linkFacebook" src="" alt="link facebok"></a></li>
+                <li><a href="https://twitter.com/"><img id="linkTwitter" src="" alt="linj Twitter"></a></li>
+                <li><a href="https://www.instagram.com/"><img id="linkInstagram" src="" alt=""></a></li>
+            </ul>
+        </div>
+        <p class="texto-pie">© GIFOS 2020 All Rights Reserved.</p>
+        <span class="linea-button linea"></span>
+
+    </footer>
+    <!-- Fin footer -->
+    <script src="./js/gifos.js"></script>
+    <script src="./js/mis-gifos.js"></script>
+    <script src="./js/gifo-maximizados.js"></script>
+    <script src="./js/trendingGifos.js"></script>
+    <script src="./js/footer.js"></script>
+</body>
+
+</html>

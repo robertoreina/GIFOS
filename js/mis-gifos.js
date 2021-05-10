@@ -20,8 +20,8 @@ let gifosFaltantes = 0;
 let gifosRenderizados = 0;
 
 let dataGifosFavoritos = [];
-
-console.log(location.pathname)
+let dataIdMisGifos = [];
+let dataMisGifos = [];
 
 // Funcionalidad del modo nocturno/diurno
 let modoActual = localStorage.getItem('modo-diurno-nocturno');
@@ -123,20 +123,41 @@ botonCrearGifo.addEventListener("mouseout", () => {
     }
 })
 
-// se renderizan los gifos favoritos que se encuentran en el localStorage
-let cntGifosFavoritos = document.getElementById("cntGifosFavoritos");
-let cntSinGifosFavoritos = document.getElementById("cntSinGifosFavoritos");
+// se renderizan mis gifos que se encuentran en el localStorage
+let cntGifosMisGifos = document.getElementById("cntGifosMisGifos");
+let cntSinGifosMisGifos = document.getElementById("cntSinGifosMisGifos");
 
-if (localStorage.getItem('favoritos') != null) {
-    dataGifosFavoritos = (JSON.parse(localStorage.getItem('favoritos')));
+if (localStorage.getItem('id-mis-gifos') != null) {
+    dataIdMisGifos = (JSON.parse(localStorage.getItem('id-mis-gifos')));
 }
 
-cntSinGifosFavoritos.classList.add("hide")
-if (dataGifosFavoritos.length >= 1) {
-    obtenerFavoritosMisGifos(dataGifosFavoritos, cntGifosFavoritos, 0);
+cntSinGifosMisGifos.classList.add("hide")
+if (dataIdMisGifos.length >= 1) {
+    getGifosByIds()
+    .then(() => {
+        obtenerFavoritosMisGifos(dataMisGifos.data, cntGifosMisGifos, 0)
+    }
+    );
 } else {
-    cntSinGifosFavoritos.classList.remove("hide")
-    cntGifosFavoritos.classList.add("hide");
+    cntSinGifosMisGifos.classList.remove("hide")
+    cntGifosMisGifos.classList.add("hide");
+}
+
+// funcion de que ejecuta fetch para obtener los trending Gifos 
+async function getGifosByIds() {
+    const endpoint = "https://api.giphy.com/v1/gifs?";
+    const ids = dataIdMisGifos.map((element) => {
+        return element.id
+    }).join(", ");
+    const url = `${endpoint}api_key=${api_key}&ids=${ids}`;
+
+    try {
+        let response = await fetch(url);
+        dataMisGifos = await response.json();
+
+    } catch (error) {
+        console.error(err.name + ": " + err.message);
+    }
 }
 
 /**
@@ -148,25 +169,25 @@ if (dataGifosFavoritos.length >= 1) {
 function obtenerFavoritosMisGifos(arrayGifos, seccion, iRender) {
 
     seccion.classList.remove("hide")
-   if (iRender === 0) { // la primera vez que se renderizan los gifos favoritos
+    if (iRender === 0) { // la primera vez que se renderizan los gifos favoritos
         countGifos = arrayGifos.length > 12 ? 12 : arrayGifos.length;
-   } else{
+    } else {
         countGifos += gifosFaltantes > 12 ? 12 : gifosFaltantes;
-   }
+    }
 
     for (let i = iRender; i < countGifos; i++) {
         renderizarGifos(arrayGifos[i], seccion, i, arrayGifos);
         gifosRenderizados = i + 1;
     }
-    
+
     gifosFaltantes = arrayGifos.length - gifosRenderizados;
-    
-     // console.log("gifosTotales: " + arrayGifos.length,
+
+    // console.log("gifosTotales: " + arrayGifos.length,
     //     "gifosRenderizados: " + gifosRenderizados,
     //     "countGifos : " + countGifos,
     //     "gifosFaltantes: ", gifosFaltantes);
 
-    
+
     if (gifosFaltantes > 0) {
         botonVerMasGifos.classList.remove("hide");
     } else {
@@ -175,7 +196,7 @@ function obtenerFavoritosMisGifos(arrayGifos, seccion, iRender) {
 }
 
 // boton ver mas gifos favoritos
-botonVerMasGifos.addEventListener("click", () =>{
+botonVerMasGifos.addEventListener("click", () => {
     obtenerFavoritosMisGifos(dataGifosFavoritos, cntGifosFavoritos, gifosRenderizados);
 })
 

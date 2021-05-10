@@ -25,7 +25,6 @@ function renderizarGifosTrending(trendingGifos) {
     trendingGifos.forEach((element, index, array) => {
         renderizarGifos(element, cntTrendingGifos, index, array);        
     });
-
 }
 
  // Funcionamiento del boton desplazar hacia la izquierda 
