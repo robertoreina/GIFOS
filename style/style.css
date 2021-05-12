@@ -582,18 +582,19 @@ nav {
   background-color: transparent;
 }
 
-.cnt-card-gifos:hover {
-  background-color: rgba(86, 46, 229, 0.9);
-  -webkit-transition: background-color 0.5s;
-  transition: background-color 0.5s;
-}
-
-.cnt-card-gifos:hover > .cnt-botones-gifos,
-.cnt-card-gifos:hover .user-gifos,
-.cnt-card-gifos:hover .titulo-gifos {
-  -webkit-transition: visibility 0.5s;
-  transition: visibility 0.5s;
-  visibility: visible;
+@media only screen and (min-width: 992px) {
+  .cnt-card-gifos:hover {
+    background-color: rgba(86, 46, 229, 0.9);
+    -webkit-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+  }
+  .cnt-card-gifos:hover > .cnt-botones-gifos,
+  .cnt-card-gifos:hover .user-gifos,
+  .cnt-card-gifos:hover .titulo-gifos {
+    -webkit-transition: visibility 0.5s;
+    transition: visibility 0.5s;
+    visibility: visible;
+  }
 }
 
 .cnt-card-gifos .user-gifos, .cnt-card-gifos .titulo-gifos {
@@ -657,6 +658,18 @@ nav {
 .titulo-gifos {
   font-size: 16px;
   font-weight: bold;
+}
+
+.max-gifo-mobile {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+  .max-gifo-mobile {
+    display: none;
+  }
 }
 
 #cntResultadosGifos.hide {
@@ -1095,17 +1108,31 @@ main.seccion-principal {
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 80% 20%;
-  -ms-grid-columns: 25% 50% 25%;
-      grid-template: 80% 20% / 25% 50% 25%;
+  -ms-grid-columns: 100%;
+      grid-template: 80% 20% / 100%;
+}
+
+@media only screen and (min-width: 992px) {
+  main.seccion-principal {
+    -ms-grid-rows: 80% 20%;
+    -ms-grid-columns: 25% 50% 25%;
+        grid-template: 80% 20% / 25% 50% 25%;
+  }
 }
 
 figure {
   margin: 0;
   padding: 0;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
+}
+
+@media only screen and (min-width: 992px) {
+  figure {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 .cnt-main-a {
@@ -1173,6 +1200,11 @@ figure {
 }
 
 .cnt-main-b .cnt-video #gifPreview {
+  width: 100%;
+  height: 100%;
+}
+
+.cnt-main-b .cnt-video video {
   width: 100%;
   height: 100%;
 }
@@ -1337,8 +1369,8 @@ figure {
 }
 
 .cnt-main-d {
-  -ms-grid-column: 2;
-  grid-column: 2;
+  -ms-grid-column: 1;
+  grid-column: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1348,6 +1380,13 @@ figure {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media only screen and (min-width: 992px) {
+  .cnt-main-d {
+    -ms-grid-column: 2;
+    grid-column: 2;
+  }
 }
 
 .cnt-main-d .boton-crear-gifo {
@@ -1382,7 +1421,10 @@ figure {
   font-family: "Roboto", sans-serif;
   padding: 6px 0;
   display: inline-block;
-  margin-right: 1rem;
+}
+
+.pasos:nth-of-type(2) {
+  margin: 0 1rem;
 }
 
 .modo-diurno .cnt-main-b {

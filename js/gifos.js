@@ -113,31 +113,19 @@ function renderizarGifos(gifos, seccion, i, array) {
     tituloGifo.classList.add("titulo-gifos");
     tituloGifo.innerHTML = gifos.title;
 
-    li.appendChild(userGifo);
-    li.appendChild(tituloGifo);
+    li.appendChild(userGifo);     // usuario del gifo en la card 
+    li.appendChild(tituloGifo);   // titulo  del gifo en la card
+
+
+    let maxGifoinMobile = document.createElement("span");  // este elemento permite maximizar el gifo en versiones mobile / se oculta para versiones desktop
+    maxGifoinMobile.classList.add("max-gifo-mobile");
+    li.appendChild(maxGifoinMobile);
+
+    //Boton maximiza el gifo seleccionado para mobile
+    maxGifoinMobile.addEventListener("click", () => maximizarGifo(gifos, i, array))
 
     //Boton maximiza el gifo seleccionado
-    botonMaximizar.addEventListener("click", () => {
-        cntGifoMax.classList.remove("hide");
-        body.classList.add("overflow-hidden");
-        gifoMaximizado.setAttribute("src", gifos.images.original.url)
-        userGifoMax.innerHTML = gifos.username;
-        tituloGifoMax.innerHTML = gifos.title;
-        iGifoMax = i;
-        dataGifosMaximizados = array;
- 
-        if (dataGifosMaximizados.length == 1) {
-            console.log("click")
-            botonRightGifoMax.classList.add("hide")
-            botonLeftGifoMax.classList.add("hide")
-        }
-
-        if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
-            botonFavGifoMax.setAttribute("src", "./assets/icon-fav-active.svg");
-        } else {
-            botonFavGifoMax.setAttribute("src", "./assets/icon-fav.svg");
-        }
-    })
+    botonMaximizar.addEventListener("click", () => maximizarGifo(gifos, i, array))
 
     botonMaximizar.addEventListener("mouseover", () => {
         botonMaximizar.setAttribute("src", "./assets/icon-max-hover.svg");
@@ -147,9 +135,8 @@ function renderizarGifos(gifos, seccion, i, array) {
         botonMaximizar.setAttribute("src", "./assets/icon-max-normal.svg");
     })
 
-
     // Boton descargar gifo
-    botonDescargar.addEventListener("click", () => {
+    botonDescargar.addEventListener("click", () =>{
 
     })
 
@@ -161,6 +148,31 @@ function renderizarGifos(gifos, seccion, i, array) {
         botonDescargar.setAttribute("src", "./assets/icon-download.svg");
     })
 }
+
+
+// Maximiza gifo
+function maximizarGifo(gifos, i, array) {
+    cntGifoMax.classList.remove("hide");
+    body.classList.add("overflow-hidden");
+    gifoMaximizado.setAttribute("src", gifos.images.original.url)
+    userGifoMax.innerHTML = gifos.username;
+    tituloGifoMax.innerHTML = gifos.title;
+    iGifoMax = i;
+    dataGifosMaximizados = array;
+
+    if (dataGifosMaximizados.length == 1) {
+        console.log("click")
+        botonRightGifoMax.classList.add("hide")
+        botonLeftGifoMax.classList.add("hide")
+    }
+
+    if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
+        botonFavGifoMax.setAttribute("src", "./assets/icon-fav-active.svg");
+    } else {
+        botonFavGifoMax.setAttribute("src", "./assets/icon-fav.svg");
+    }
+}
+
 
 // Agrega o remueve gifos favoritos del localStorage
 function gifoFavorito(favorito, gifo) {

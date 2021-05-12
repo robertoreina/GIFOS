@@ -23,16 +23,18 @@
     justify-content: flex-end;
     background-color: transparent;
 
-    &:hover {
-        background-color: $colorMoradoTransparente;
-        transition: background-color 0.5s;
+    @include desktop{
 
-
-        & > .cnt-botones-gifos,
-        .user-gifos,
-        .titulo-gifos {
-            transition: visibility 0.5s;
-            visibility: visible;
+        &:hover {
+            background-color: $colorMoradoTransparente;
+            transition: background-color 0.5s;
+    
+            & > .cnt-botones-gifos,
+            .user-gifos,
+            .titulo-gifos {
+                transition: visibility 0.5s;
+                visibility: visible;
+            }
         }
     }
 
@@ -94,4 +96,14 @@
 .titulo-gifos {
     font-size: 16px;
     font-weight: bold;
+}
+
+// contiene evento para maximizar gifo en version mobile
+.max-gifo-mobile{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    @include desktop{
+        display: none;
+    }
 }
