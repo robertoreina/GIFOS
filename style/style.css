@@ -297,13 +297,13 @@ nav {
 }
 
 @media only screen and (min-width: 992px) {
-  .linkHoverActive:hover {
-    border-bottom: 2px solid #5ED7C6;
+  .linkDesktop:hover {
+    border-bottom: 2px solid #5ed7c6;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  .linkHoverActive:active {
+  .linkDesktop:active {
     color: #9CAFC3;
     border-bottom: none;
   }
@@ -347,7 +347,8 @@ nav {
   display: flex;
 }
 
-.modo-nocturno header, .modo-nocturno nav {
+.modo-nocturno header,
+.modo-nocturno nav {
   background-color: #37383c;
 }
 
@@ -366,7 +367,12 @@ nav {
   color: white;
 }
 
-.modo-diurno header, .modo-diurno nav {
+.modo-nocturno #listaNavBar a.linkActive {
+  color: #9CAFC3;
+}
+
+.modo-diurno header,
+.modo-diurno nav {
   background-color: white;
 }
 
@@ -380,14 +386,20 @@ nav {
   }
 }
 
-.modo-diurno #listaNavBar li, .modo-diurno #listaNavBar a {
+.modo-diurno #listaNavBar li,
+.modo-diurno #listaNavBar a {
   color: white;
 }
 
 @media only screen and (min-width: 992px) {
-  .modo-diurno #listaNavBar li, .modo-diurno #listaNavBar a {
+  .modo-diurno #listaNavBar li,
+  .modo-diurno #listaNavBar a {
     color: #572ee5;
   }
+}
+
+.modo-diurno #listaNavBar a.linkActive {
+  color: #9CAFC3;
 }
 
 #homeBuscador {
