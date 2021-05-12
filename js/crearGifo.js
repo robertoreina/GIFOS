@@ -1,6 +1,7 @@
 // script para el manejo de la pagina crear gifos
 
 let video = document.querySelector('video');
+let gifPreview = document.getElementById("gifPreview")
 let grabar = document.getElementById('grabar');
 let finalizar = document.getElementById("finalizar");
 let subirGifo = document.getElementById("subirGifo");
@@ -127,10 +128,25 @@ if (localStorage.getItem('id-mis-gifos') != null) {
 }
 
 //boton solicita perisos y aplica estilos para el paso 1
-comenzar.addEventListener("click", () => getPermisos());
+comenzar.addEventListener("click", () => {
+    cntMsg01.classList.add("hide");
+    cntMsg02.classList.remove("hide");
+    paso1.classList.add("paso-active");
+    comenzar.classList.add("hide");
+    getPermisos(function(){
+        cntMsg02.classList.add("hide");
+        paso1.classList.remove("paso-active");
+        paso2.classList.add("paso-active");
+        grabar.classList.remove("hide");
+    });
+});
 
 //boton para inicia la grabacion del gifo
-grabar.addEventListener("click", () => getMedia());
+grabar.addEventListener("click", () => {
+    getMedia();
+    grabar.classList.add("hide");
+    finalizar.classList.remove("hide");
+});
 
 //boton para finalizar la grabacion del gif
 finalizar.addEventListener("click", () => stopMedia());
@@ -139,28 +155,18 @@ finalizar.addEventListener("click", () => stopMedia());
 subirGifo.addEventListener("click", () => postGifos());
 
 // obtener permisos para uso de camar
-async function getPermisos() {
+async function getPermisos(callback) {
     let constraints = { audio: false, video: { width: 450, height: 250 } };
-    cntMsg01.classList.add("hide");
-    cntMsg02.classList.remove("hide");
-    paso1.classList.add("paso-active");
-    comenzar.classList.add("hide");
-
     try {
         stream = await navigator.mediaDevices.getUserMedia(constraints);
         video.srcObject = stream;
         video.play();
         track = stream.getTracks()[0];
-        cntMsg02.classList.add("hide");
-        paso1.classList.remove("paso-active");
-        paso2.classList.add("paso-active");
-        grabar.classList.remove("hide")
-
+        callback();
     }
     catch (err) {
         console.log(err.name + ": " + err.message);
         comenzar.classList.remove("hide");
-
     }
 }
 
@@ -174,15 +180,13 @@ async function getMedia() {
         hidden: 250,
         onGifRecordingStarted: function () {
             console.log('started')
-        },
+            initTimer();
+        }
     };
 
     try {
-        initTimer();
         recorder = new RecordRTC(stream, constraintsRTC);
         recorder.startRecording();
-        grabar.classList.add("hide");
-        finalizar.classList.remove("hide");
     }
     catch (err) {
         console.log(err.name + ": " + err.message);
@@ -200,11 +204,27 @@ function stopMedia() {
     subirGifo.classList.remove("hide")
     recorder.stopRecording(function () {
         blob = recorder.getBlob();
-        form.append('file', blob, 'myGif.gif');
-        console.log(form.get('file'))
-        // invokeSaveAsDialog(blob);
+        gifPreview.src = URL.createObjectURL(blob);  
+        // form.append('file', blob, 'myGif.gif');
+        video.classList.add("hide");
+        gifPreview.classList.remove("hide");
     });
 }
+
+// boton para repetir captura
+timerbtnRepetir.addEventListener("click", ()=>{
+    subirGifo.classList.add("hide")
+    finalizar.classList.remove("hide")
+    recorder.destroy();
+    recorder = null;
+    gifPreview.classList.add('hide');
+    video.classList.remove("hide");
+    getPermisos(function(){
+        getMedia();
+    })
+    
+})
+
 
 let cronos;
 let tiempo;
@@ -214,6 +234,8 @@ let hor = 0;
 
 // funciona que inicializa el cronometo 
 function initTimer() {
+    timerbtnRepetir.innerHTML = "00:00:00";
+    timerbtnRepetir.classList.add('crono');
     cronos = setInterval(function () { timer() }, 1000);
 }
 
@@ -240,6 +262,7 @@ function stopTimer() {
     min = 0;
     hor = 0;
     timerbtnRepetir.innerHTML = "REPETIR CAPTURA";
+    timerbtnRepetir.classList.replace('crono', 'btn-repetir');
 }
 
 // funcion de que ejecuta fetch para subir gif creado a giphy mediante un post
@@ -250,6 +273,7 @@ async function postGifos() {
     paso3.classList.add("paso-active");
     cntMsg03.classList.remove("hide");
     timerbtnRepetir.innerHTML = " "
+    form.append('file', blob, 'myGif.gif');
 
     const endpoint = "https://upload.giphy.com/v1/gifs?";
     const api_key = "lrnG9FoHoVNeYhrRPSGA1MtbbERL9qZL";
@@ -266,17 +290,10 @@ async function postGifos() {
         document.querySelectorAll("#cntMsg03 img")[0].setAttribute("src", "./assets/ok.svg")
         document.querySelectorAll("#cntMsg03 p")[0].innerHTML = "GIFO subido con éxito";
 
-
     } catch (err) {
         console.log(err.name + ": " + err.message);
     }
 }
-
-function prueba() {
-    setTimeout(function () { return 0 }, 5000);
-}
-
-
 
 //boton descargar gifo creado
 btnDownloadNuevoGif.addEventListener("click", () => {

@@ -180,7 +180,7 @@ inputBuscador.addEventListener("keypress", (e) => {
         if (!buscadorEnNav) {
             buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
         }
-        
+
         buscarGifos(inputBuscador.value);
     }
 });
@@ -295,7 +295,7 @@ function buscarGifos(buscar) {
                 top: 700,
                 left: 0,
                 behavior: 'smooth'
-              });
+            });
 
         })
         .catch((err) => {
@@ -307,8 +307,7 @@ function buscarGifos(buscar) {
                 top: 700,
                 left: 0,
                 behavior: 'smooth'
-              });
-
+            });
         });
 }
 

@@ -41,13 +41,30 @@ figure {
     justify-content: center;
     align-items: center;
 
-    video {
+    video.hide {
+        display: none;
+    }
+
+    .cnt-video-b {
         position: relative;
-        // max-width: 450px;
-        // max-height: 250px;
+        display: flex;
+        justify-content: center;
         width: 80%;
         height: 80%;
     }
+
+    #gifPreview {
+        width: 100%;
+        height: 100%;
+    }
+
+    // video {
+    //     position: relative;
+    //     // max-width: 450px;
+    //     // max-height: 250px;
+    //     width: 80%;
+    //     height: 80%;
+    // }
 
     //boder decorativos en las esquinas
     .deco-border {
@@ -95,7 +112,7 @@ figure {
     flex-flow: column;
     justify-content: center;
     text-align: center;
-    
+
     &.hide {
         display: none;
     }
@@ -118,25 +135,25 @@ figure {
     }
 }
 
-#cntMsg03{
+#cntMsg03 {
     background-color: $colorMoradoTransparente;
-    width: 71%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
 
-    p{
+    p {
         color: white;
-        font-weight: bold
-    };
-    
-    .cnt-btn-down-link{
+        font-weight: bold;
+    }
+
+    .cnt-btn-down-link {
         width: 75px;
         position: absolute;
         top: 10px;
         right: 10px;
         display: flex;
         justify-content: space-between;
-        
-        img{
+
+        img {
             cursor: pointer;
         }
     }
@@ -152,7 +169,7 @@ figure {
     align-content: center;
     position: relative;
 
-    div{
+    div {
         width: fit-content;
     }
 }
@@ -164,11 +181,18 @@ figure {
     font-size: 13px;
     position: absolute;
     right: 0;
-}
 
-.btn-repetir:hover {
-    border-bottom: 2px solid $colorVerde;
-    cursor: pointer;
+    &.crono {
+        pointer-events: none;
+    }
+    &.btn-repetir {
+        pointer-events: auto;
+        cursor: pointer;
+
+        &:hover {
+            border-bottom: 2px solid $colorVerde;
+        }
+    }
 }
 
 //contendor lado derecho

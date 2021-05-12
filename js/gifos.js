@@ -55,6 +55,7 @@ function renderizarGifos(gifos, seccion, i, array) {
 
         div.appendChild(botonEliminar)
 
+        gifo.setAttribute("src", gifos.images.fixed_height.url);
 
     } else {
 
@@ -95,6 +96,9 @@ function renderizarGifos(gifos, seccion, i, array) {
                 botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
             }
         })
+
+        gifo.setAttribute("src", gifos.images.preview_gif.url);  // aqui se asigna la url del gif que
+
     }
 
     div.appendChild(botonDescargar)
@@ -121,6 +125,12 @@ function renderizarGifos(gifos, seccion, i, array) {
         tituloGifoMax.innerHTML = gifos.title;
         iGifoMax = i;
         dataGifosMaximizados = array;
+ 
+        if (dataGifosMaximizados.length == 1) {
+            console.log("click")
+            botonRightGifoMax.classList.add("hide")
+            botonLeftGifoMax.classList.add("hide")
+        }
 
         if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
             botonFavGifoMax.setAttribute("src", "./assets/icon-fav-active.svg");
