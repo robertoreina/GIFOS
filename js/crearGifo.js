@@ -272,7 +272,7 @@ async function postGifos() {
     paso2.classList.remove("paso-active");
     paso3.classList.add("paso-active");
     cntMsg03.classList.remove("hide");
-    timerbtnRepetir.innerHTML = " "
+    timerbtnRepetir.innerHTML = " ";
     form.append('file', blob, 'myGif.gif');
 
     const endpoint = "https://upload.giphy.com/v1/gifs?";
