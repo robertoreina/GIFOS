@@ -97,6 +97,7 @@ botonCrearGifo.addEventListener("mouseover", () => {
         botonCrearGifo.attributes.src.value = "./assets/CTA-crear-gifo-hover-modo-noc.svg";
     }
 })
+
 botonCrearGifo.addEventListener("mouseout", () => {
     if (modoActual === "D") {
         if (location.pathname == '/crearGifo.html') {

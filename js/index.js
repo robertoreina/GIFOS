@@ -177,10 +177,7 @@ inputBuscador.addEventListener("keypress", (e) => {
 
     // Ejecucion de funcion Buscar en caso de que se presione INTRO
     if (e.keyCode === 13 && inputBuscador.value != '') {
-        if (!buscadorEnNav) {
-            buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
-        }
-
+        buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
         buscarGifos(inputBuscador.value);
     }
 });
@@ -188,9 +185,8 @@ inputBuscador.addEventListener("keypress", (e) => {
 // Evento input de buscador
 inputBuscador.addEventListener("input", () => {
 
-    if (inputBuscador.value != "" && !buscadorEnNav) {
+    if (inputBuscador.value != "") {
         buscarSugerenciasBusquedas(inputBuscador.value);
-        // pintarSugerenciasBusquedas(); 
     }
 
     if (buscadorActivo == false) {
@@ -216,12 +212,12 @@ botonBusquedaActiva.addEventListener("click", () => {
 //Aplica estilos al buscador segun si esta activo o inactivo
 function buscadorActivoInactivo(estado) {
 
-    if (!buscadorEnNav) {
-        cntInputBusqueda.classList.toggle("borderCntOn");
-        boxBusqueda.classList.toggle("clsFormBusquedaOn");
-        listaSugerenciaBusqueda.classList.toggle("busquedaOff");
-        botonBusquedaActiva.classList.toggle("busquedaOff");
-    }
+
+    cntInputBusqueda.classList.toggle("borderCntOn");
+    boxBusqueda.classList.toggle("clsFormBusquedaOn");
+    listaSugerenciaBusqueda.classList.toggle("busquedaOff");
+    botonBusquedaActiva.classList.toggle("busquedaOff");
+
 
     buscadorActivo = estado;
 
@@ -356,11 +352,11 @@ botonVerMasGifos.addEventListener("click", () => {
                 gifosRenderizados += countGifos;
                 gifosFaltantes = gifosTotales - gifosRenderizados;
 
-                console.log("ver mas ", "gifosTotales: " + gifosTotales,
-                    "gifosRenderizados: " + gifosRenderizados,
-                    "countGifos : " + countGifos,
-                    "gifosFaltantes: ", gifosFaltantes,
-                    "dataGifos.length " + dataGifos.length);
+                // console.log("ver mas ", "gifosTotales: " + gifosTotales,
+                //     "gifosRenderizados: " + gifosRenderizados,
+                //     "countGifos : " + countGifos,
+                //     "gifosFaltantes: ", gifosFaltantes,
+                //     "dataGifos.length " + dataGifos.length);
 
                 if (gifosFaltantes > 0) {
                     botonVerMasGifos.classList.remove("hide");
@@ -373,7 +369,7 @@ botonVerMasGifos.addEventListener("click", () => {
             }
         })
         .catch((err) => {
-            console.log(err)
+            console.err(err)
         });
 });
 
@@ -399,7 +395,6 @@ function pintarSugerenciasBusquedas() {
         sugerenciasBusqueda.innerHTML = elemento.name;
         listaSugerenciaBusqueda.appendChild(sugerenciasBusqueda);
 
-        console.log(sugerenciasBusqueda)
         sugerenciasBusqueda.addEventListener("click", () => {
             inputBuscador.value = sugerenciasBusqueda.innerHTML
             buscarGifos(inputBuscador.value);

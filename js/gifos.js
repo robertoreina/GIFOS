@@ -19,8 +19,7 @@ function renderizarGifos(gifos, seccion, i, array) {
     li.classList.add(`cls-${seccion.id}`);
     let gifo = document.createElement("img");
     gifo.classList.add("gifo-min");
-    // gifo.setAttribute("src", gifos.images.fixed_height.url);
-    gifo.setAttribute("src", gifos.images.preview_gif.url);  // aqui se asigna la url del gif que
+    gifo.setAttribute("src", gifos.images.original.url);  // aqui se asigna la url del gif que
     seccion.appendChild(li);
     li.appendChild(gifo);
 
@@ -55,8 +54,6 @@ function renderizarGifos(gifos, seccion, i, array) {
 
         div.appendChild(botonEliminar)
 
-        gifo.setAttribute("src", gifos.images.fixed_height.url);
-
     } else {
 
         let botonFavoritos = document.createElement("img");
@@ -88,7 +85,6 @@ function renderizarGifos(gifos, seccion, i, array) {
             }
         })
 
-
         li.addEventListener("mouseenter", () => {
             if (dataGifosFavoritos.some((element) => element.id === gifos.id)) {
                 botonFavoritos.setAttribute("src", "./assets/icon-fav-active.svg");
@@ -96,9 +92,6 @@ function renderizarGifos(gifos, seccion, i, array) {
                 botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
             }
         })
-
-        gifo.setAttribute("src", gifos.images.preview_gif.url);  // aqui se asigna la url del gif que
-
     }
 
     div.appendChild(botonDescargar)
@@ -137,7 +130,7 @@ function renderizarGifos(gifos, seccion, i, array) {
 
     // Boton descargar gifo
     botonDescargar.addEventListener("click", () =>{
-
+        downloadGifo(gifos.images.original.url)
     })
 
     botonDescargar.addEventListener("mouseover", () => {
@@ -204,3 +197,16 @@ botonVerMasGifos.addEventListener("mouseout", () => {
     }
 });
 
+
+// funcion para descargar los gif 
+async function downloadGifo(url) {
+    //create new a element
+    let a = document.createElement('a');
+    // get image as blob
+    let response = await fetch(url);
+    let file = await response.blob();
+    a.download = 'myGif';
+    a.href = window.URL.createObjectURL(file);
+    a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
+    a.click();
+  };

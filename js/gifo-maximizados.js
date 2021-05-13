@@ -107,7 +107,7 @@ botonFavGifoMax.addEventListener("mouseout", () => {
 
 // Boton descargar gifo Maximizado 
 botonDownloadGifoMax.addEventListener("click", () => {
-
+    downloadGifo(dataGifosMaximizados[iGifoMax].images.original.url)
 })
 
 botonDownloadGifoMax.addEventListener("mouseover", () => {
@@ -134,7 +134,6 @@ botonDeleteGifoMax.addEventListener("mouseout", () => {
 
 // realiza el cambio de gifo en la seccion gifo max
 function cambiarGifoMax(posicionGifoMax) {
-    console.log(dataGifosMaximizados)
     gifoMaximizado.setAttribute("src", dataGifosMaximizados[posicionGifoMax].images.original.url)
     userGifoMax.innerHTML = dataGifosMaximizados[posicionGifoMax].username;
     tituloGifoMax.innerHTML = dataGifosMaximizados[posicionGifoMax].title;
@@ -146,13 +145,12 @@ function cambiarGifoMax(posicionGifoMax) {
     }
 }
 
-
+// funcion elimina los gifos del local storage en la seccion mis gifos
 function deleteMisGifos(idGifo) {
 
     let posicion = dataIdMisGifos.findIndex(elemento => elemento.id == idGifo);
     dataIdMisGifos.splice(posicion, 1);
     localStorage.setItem('id-mis-gifos', JSON.stringify(dataIdMisGifos))
-    console.log(posicion);
     location.reload();
-}   
+}
 
