@@ -251,7 +251,7 @@ function timer() {
         min = 0
         hor += 1;
     }
-    tiempo = `${hor} : ${min} : ${seg}`
+    tiempo = `${formatTimer(hor)}:${formatTimer(min)}:${formatTimer(seg)}`
 
     timerbtnRepetir.innerHTML = tiempo;
 }
@@ -320,3 +320,17 @@ btnLinkNuevoGif.addEventListener("mouseover", (e) => {
 btnLinkNuevoGif.addEventListener("mouseout", (e) => {
     btnLinkNuevoGif.setAttribute("src", "./assets/icon-link-normal.svg")
 })
+
+
+function formatTimer(number){
+    var numberOutput = Math.abs(number);  
+    var length = number.toString().length;  
+    var zero = "0";    
+    if (length <= 1) {
+        return `0${numberOutput.toString()}`;
+    } else {
+        return numberOutput.toString();
+    }
+
+    
+}

@@ -377,7 +377,7 @@ nav {
 }
 
 .modo-diurno #listaNavBar {
-  background-color: #572ee5;
+  background-color: rgba(86, 46, 229, 0.9);
 }
 
 @media only screen and (min-width: 992px) {
