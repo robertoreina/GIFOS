@@ -46,7 +46,7 @@ function cambiarModo(modo) {
         body.classList.add("modo-nocturno");
 
         //iconos seccion nav
-        logoPagina.attributes.src.value = "./assets/Logo-modo-noc.svg";
+        logoPagina.attributes.src.value = "./assets/logo-mobile-modo-noct-2.svg";
         iconoEquis.attributes.src.value = "./assets/close-modo-noct.svg";
         iconoBurger.attributes.src.value = "./assets/burger-modo-noct.svg";
         botonCrearGifo.attributes.src.value = "./assets/CTA-crear-gifo-modo-noc.svg";
@@ -76,7 +76,7 @@ function cambiarModo(modo) {
         body.classList.remove("modo-nocturno");
 
         //iconos seccion nav
-        logoPagina.attributes.src.value = "./assets/logo-desktop.svg";
+        logoPagina.attributes.src.value = "./assets/logo-mobile-2.svg";
         iconoEquis.attributes.src.value = "./assets/close.svg";
         iconoBurger.attributes.src.value = "./assets/burger.svg";
         botonCrearGifo.attributes.src.value = "./assets/button-crear-gifo.svg";
@@ -131,11 +131,11 @@ if (localStorage.getItem('favoritos') != null) {
     dataGifosFavoritos = (JSON.parse(localStorage.getItem('favoritos')));
 }
 
-cntSinGifosFavoritos.classList.add("hide")
+cntSinGifosFavoritos.classList.add("hide");
 if (dataGifosFavoritos.length >= 1) {
     obtenerFavoritosMisGifos(dataGifosFavoritos, cntGifosFavoritos, 0);
 } else {
-    cntSinGifosFavoritos.classList.remove("hide")
+    cntSinGifosFavoritos.classList.remove("hide");
     cntGifosFavoritos.classList.add("hide");
 }
 

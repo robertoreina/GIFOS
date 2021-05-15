@@ -76,12 +76,16 @@ function renderizarGifos(gifos, seccion, i, array) {
         botonFavoritos.addEventListener("mouseover", () => {
             if (!dataGifosFavoritos.some((element) => element.id === gifos.id)) {
                 botonFavoritos.setAttribute("src", "./assets/icon-fav-hover.svg");
+            } else {
+                botonFavoritos.setAttribute("src", "./assets/icon-fav-active-hover.svg");
             }
         })
 
         botonFavoritos.addEventListener("mouseout", () => {
             if (!dataGifosFavoritos.some((element) => element.id === gifos.id)) {
                 botonFavoritos.setAttribute("src", "./assets/icon-fav.svg");
+            } else {
+                botonFavoritos.setAttribute("src", "./assets/icon-fav-active.svg");
             }
         })
 

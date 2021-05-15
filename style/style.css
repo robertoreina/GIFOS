@@ -611,7 +611,7 @@ nav {
 
 .cnt-card-gifos .user-gifos, .cnt-card-gifos .titulo-gifos {
   margin: 0 0 1rem 1rem;
-  font: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
   visibility: hidden;
   color: white;
 }
@@ -1302,6 +1302,25 @@ figure {
   height: 100%;
 }
 
+#cntMsg03 img.loading {
+  -webkit-animation: rotate 3s linear infinite;
+          animation: rotate 3s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 #cntMsg03 p {
   color: white;
   font-weight: bold;
@@ -1358,12 +1377,7 @@ figure {
   right: 0;
 }
 
-#timer-btnRepetir.crono {
-  pointer-events: none;
-}
-
 #timer-btnRepetir.btn-repetir {
-  pointer-events: auto;
   cursor: pointer;
 }
 

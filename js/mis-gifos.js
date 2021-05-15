@@ -46,7 +46,7 @@ function cambiarModo(modo) {
         body.classList.add("modo-nocturno");
 
         //iconos seccion nav
-        logoPagina.attributes.src.value = "./assets/Logo-modo-noc.svg";
+        logoPagina.attributes.src.value = "./assets/logo-mobile-modo-noct-2.svg";
         iconoEquis.attributes.src.value = "./assets/close-modo-noct.svg";
         iconoBurger.attributes.src.value = "./assets/burger-modo-noct.svg";
         botonCrearGifo.attributes.src.value = "./assets/CTA-crear-gifo-modo-noc.svg";
@@ -76,7 +76,7 @@ function cambiarModo(modo) {
         body.classList.remove("modo-nocturno");
 
         //iconos seccion nav
-        logoPagina.attributes.src.value = "./assets/logo-desktop.svg";
+        logoPagina.attributes.src.value = "./assets/logo-mobile-2.svg";
         iconoEquis.attributes.src.value = "./assets/close.svg";
         iconoBurger.attributes.src.value = "./assets/burger.svg";
         botonCrearGifo.attributes.src.value = "./assets/button-crear-gifo.svg";
@@ -156,11 +156,11 @@ async function getGifosByIds() {
         dataMisGifos = await response.json();
 
     } catch (error) {
-        console.error(err.name + ": " + err.message);
+        console.error(error.name + ": " + error.message);
     }
 }
 
-/**
+/** 
  * Funcion para obtener y renderizar los gifos en las secciones Favoritos y Mis Gifos
  * @param {*} arrayGifos recibe array de objeto que contiene los gifos favoritos/mis gifos
  * @param {*} seccion recibe objeto del contenedor donde se van a renderizar los gifos
@@ -169,7 +169,7 @@ async function getGifosByIds() {
 function obtenerFavoritosMisGifos(arrayGifos, seccion, iRender) {
 
     seccion.classList.remove("hide")
-    if (iRender === 0) { // la primera vez que se renderizan los gifos favoritos
+    if (iRender === 0) { // la primera vez que se renderizan los gifos
         countGifos = arrayGifos.length > 12 ? 12 : arrayGifos.length;
     } else {
         countGifos += gifosFaltantes > 12 ? 12 : gifosFaltantes;
@@ -186,7 +186,6 @@ function obtenerFavoritosMisGifos(arrayGifos, seccion, iRender) {
     //     "gifosRenderizados: " + gifosRenderizados,
     //     "countGifos : " + countGifos,
     //     "gifosFaltantes: ", gifosFaltantes);
-
 
     if (gifosFaltantes > 0) {
         botonVerMasGifos.classList.remove("hide");

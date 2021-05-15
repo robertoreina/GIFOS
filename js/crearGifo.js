@@ -18,6 +18,10 @@ let linkFacebook = document.getElementById("linkFacebook");
 let linkTwitter = document.getElementById("linkTwitter");
 let linkInstagram = document.getElementById("linkInstagram");
 
+let linkNewGifo;
+
+const api_key = "lrnG9FoHoVNeYhrRPSGA1MtbbERL9qZL";
+
 
 // Funcionalidad del modo nocturno/diurno
 let modoActual = localStorage.getItem('modo-diurno-nocturno');
@@ -42,7 +46,7 @@ function cambiarModo(modo) {
         body.classList.add("modo-nocturno");
 
         //iconos seccion nav
-        logoPagina.attributes.src.value = "./assets/Logo-modo-noc.svg";
+        logoPagina.attributes.src.value = "./assets/logo-mobile-modo-noct-2.svg";
         iconoEquis.attributes.src.value = "./assets/close-modo-noct.svg";
         iconoBurger.attributes.src.value = "./assets/burger-modo-noct.svg";
         botonCrearGifo.attributes.src.value = "./assets/CTA-crear-gifo-active.svg"
@@ -64,7 +68,7 @@ function cambiarModo(modo) {
         body.classList.remove("modo-nocturno");
 
         //iconos seccion nav
-        logoPagina.attributes.src.value = "./assets/logo-desktop.svg";
+        logoPagina.attributes.src.value = "./assets/logo-mobile-2.svg";
         iconoEquis.attributes.src.value = "./assets/close.svg";
         iconoBurger.attributes.src.value = "./assets/burger.svg";
         botonCrearGifo.attributes.src.value = "./assets/CTA-crear-gifo-active.svg"
@@ -226,7 +230,6 @@ timerbtnRepetir.addEventListener("click", ()=>{
     
 })
 
-
 let cronos;
 let tiempo;
 let seg = 0;
@@ -237,6 +240,8 @@ let hor = 0;
 function initTimer() {
     timerbtnRepetir.innerHTML = "00:00:00";
     timerbtnRepetir.classList.add('crono');
+    timerbtnRepetir.style['pointer-events'] = 'none';
+
     cronos = setInterval(function () { timer() }, 1000);
 }
 
@@ -263,6 +268,7 @@ function stopTimer() {
     min = 0;
     hor = 0;
     timerbtnRepetir.innerHTML = "REPETIR CAPTURA";
+    timerbtnRepetir.style['pointer-events'] = 'auto';
     timerbtnRepetir.classList.replace('crono', 'btn-repetir');
 }
 
@@ -277,7 +283,6 @@ async function postGifos() {
     form.append('file', blob, 'myGif.gif');
 
     const endpoint = "https://upload.giphy.com/v1/gifs?";
-    const api_key = "lrnG9FoHoVNeYhrRPSGA1MtbbERL9qZL";
     const url = `${endpoint}api_key=${api_key}&file${form}&source_post_url:${document.location.href}`;
     try {
         let response = await fetch(url, {
@@ -288,8 +293,11 @@ async function postGifos() {
         dataGifId.push(jsonData.data)
         localStorage.setItem('id-mis-gifos', JSON.stringify(dataGifId))
         cntBtnsDownLink.classList.remove("hide")
-        document.querySelectorAll("#cntMsg03 img")[0].setAttribute("src", "./assets/ok.svg")
+        document.querySelectorAll("#cntMsg03 img")[0].classList.remove("loading");
+        document.querySelectorAll("#cntMsg03 img")[0].setAttribute("src", "./assets/ok.svg");
         document.querySelectorAll("#cntMsg03 p")[0].innerHTML = "GIFO subido con éxito";
+        getLinkNewGifo(jsonData.data.id);
+        console.log(jsonData.data.id)
 
     } catch (err) {
         console.log(err.name + ": " + err.message);
@@ -309,8 +317,10 @@ btnDownloadNuevoGif.addEventListener("mouseout", (e) => {
     btnDownloadNuevoGif.setAttribute("src", "./assets/icon-download.svg")
 })
 
-//boton compartir gifo creado
+//boton link gifo creado
 btnLinkNuevoGif.addEventListener("click", () => {
+    console.log("click", linkNewGifo)
+    window.open(linkNewGifo, "_blank");
 })
 
 btnLinkNuevoGif.addEventListener("mouseover", (e) => {
@@ -323,9 +333,9 @@ btnLinkNuevoGif.addEventListener("mouseout", (e) => {
 
 
 function formatTimer(number){
-    var numberOutput = Math.abs(number);  
-    var length = number.toString().length;  
-    var zero = "0";    
+    let numberOutput = Math.abs(number);  
+    let length = number.toString().length;  
+    let zero = "0";    
     if (length <= 1) {
         return `0${numberOutput.toString()}`;
     } else {
@@ -333,4 +343,19 @@ function formatTimer(number){
     }
 
     
+}
+
+// Se obtienen datos del nuevo gif 
+async function getLinkNewGifo(id) {
+    const endpoint = "https://api.giphy.com/v1/gifs?";
+    const url = `${endpoint}api_key=${api_key}&ids=${id}`;
+    try {
+        let response = await fetch(url);
+        let json = await response.json();
+        linkNewGifo = json.data[0].url;
+        console.log(json.data.url)
+
+    } catch (error) {
+        console.error(error.name + ": " + error.message);
+    }
 }

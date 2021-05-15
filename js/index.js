@@ -1,7 +1,4 @@
-// window.onload = function () {
-
-
-// import {renderizarGifos} from './gifos.js';
+// script principal para el manejo de la funcionalidad del index.html 
 
 // Elementos de la seccion de busqueda
 let inputBuscador = document.getElementById("inputBuscador");
@@ -17,8 +14,6 @@ let dataSugerenciasBusqueda = [];
 let body = document.getElementsByTagName("body")[0];
 let botonCrearGifo = document.getElementById("botonCrearGifo");
 let botonVerMasGifos = document.getElementById("botonVerMasGifos");
-
-
 
 let dataGifos = [];
 let dataGifosFavoritos = [];
@@ -63,7 +58,7 @@ function cambiarModo(modo) {
         body.classList.add("modo-nocturno");
 
         //iconos seccion nav
-        logoPagina.attributes.src.value = "./assets/Logo-modo-noc.svg";
+        logoPagina.attributes.src.value = "./assets/logo-mobile-modo-noct-2.svg";
         iconoEquis.attributes.src.value = "./assets/close-modo-noct.svg";
         iconoBurger.attributes.src.value = "./assets/burger-modo-noct.svg";
         botonCrearGifo.attributes.src.value = "./assets/CTA-crear-gifo-modo-noc.svg";
@@ -96,7 +91,7 @@ function cambiarModo(modo) {
         body.classList.remove("modo-nocturno");
 
         //iconos seccion nav
-        logoPagina.attributes.src.value = "./assets/logo-desktop.svg";
+        logoPagina.attributes.src.value = "./assets/logo-mobile-2.svg";
         iconoEquis.attributes.src.value = "./assets/close.svg";
         iconoBurger.attributes.src.value = "./assets/burger.svg";
         botonCrearGifo.attributes.src.value = "./assets/button-crear-gifo.svg";
@@ -177,7 +172,6 @@ inputBuscador.addEventListener("keypress", (e) => {
 
     // Ejecucion de funcion Buscar en caso de que se presione INTRO
     if (e.keyCode === 13 && inputBuscador.value != '') {
-        buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
         buscarGifos(inputBuscador.value);
     }
 });
@@ -212,12 +206,10 @@ botonBusquedaActiva.addEventListener("click", () => {
 //Aplica estilos al buscador segun si esta activo o inactivo
 function buscadorActivoInactivo(estado) {
 
-
     cntInputBusqueda.classList.toggle("borderCntOn");
     boxBusqueda.classList.toggle("clsFormBusquedaOn");
     listaSugerenciaBusqueda.classList.toggle("busquedaOff");
     botonBusquedaActiva.classList.toggle("busquedaOff");
-
 
     buscadorActivo = estado;
 
@@ -240,11 +232,12 @@ function buscadorActivoInactivo(estado) {
 //busqueda de gifos
 function buscarGifos(buscar) {
 
-    // buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
+    buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
 
     inputBuscador.value = "";
     let titResultados = document.getElementById("titResultados");
     titResultados.innerHTML = buscar;
+    titResultados.classList.remove("hide");
     valorBuscar = buscar;
 
     let cntSinResultadosGifos = document.getElementById("cntSinResultadosGifos");
