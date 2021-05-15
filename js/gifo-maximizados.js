@@ -68,7 +68,7 @@ botonRightGifoMax.addEventListener("mouseout", () => {
     if (modoActual === "D") {
         botonRightGifoMax.setAttribute("src", "./assets/right.svg");
     } else {
-        botonRightGifoMax.setAttribute("src", "./assets/button-slider-right-md-noct.svg")
+        botonRightGifoMax.setAttribute("src", "./assets/button-slider-right-md-noct.svg");
     }
 })
 
@@ -96,12 +96,16 @@ botonFavGifoMax.addEventListener("click", () => {
 botonFavGifoMax.addEventListener("mouseover", () => {
     if (!dataGifosFavoritos.some((element) => element.id === dataGifosMaximizados[iGifoMax].id)) {
         botonFavGifoMax.setAttribute("src", "./assets/icon-fav-hover.svg");
+    } else {
+        botonFavGifoMax.setAttribute("src", "./assets/icon-fav-active-hover.svg");
     }
 })
 
 botonFavGifoMax.addEventListener("mouseout", () => {
     if (!dataGifosFavoritos.some((element) => element.id === dataGifosMaximizados[iGifoMax].id)) {
         botonFavGifoMax.setAttribute("src", "./assets/icon-fav.svg");
+    } else {
+        botonFavGifoMax.setAttribute("src", "./assets/icon-fav-active.svg"); 
     }
 })
 

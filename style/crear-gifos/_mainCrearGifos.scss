@@ -177,12 +177,17 @@ figure {
 .cnt-main-b div:last-child {
     height: 15%;
     display: flex;
-    flex-flow: row;
-    justify-content: center;
+    flex-flow: column;
+    justify-content: space-between;
     align-items: center;
     align-content: center;
     position: relative;
 
+    @include desktop{
+        flex-flow: row;
+        justify-content: center;
+    }
+   
     div {
         width: fit-content;
     }
@@ -193,8 +198,14 @@ figure {
     font-family: $fontMontserrat;
     font-weight: bold;
     font-size: 13px;
-    position: absolute;
-    right: 0;
+    order: -1;
+
+    @include desktop{
+        order: 2;
+        position: absolute;
+        right: 0;
+        margin-bottom: 0;
+    }
 
     &.btn-repetir {
         // pointer-events: auto;
