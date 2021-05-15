@@ -84,11 +84,11 @@ function cambiarModo(modo) {
         //iconos seccion gifo max
         botonSalirGifoMax.attributes.src.value = "./assets/close.svg";
         botonLeftGifoMax.attributes.src.value = "./assets/button-slider-left.svg";
-        botonRightGifoMax.attributes.src.value = "./assets/Button-Slider-right.svg";
+        botonRightGifoMax.attributes.src.value = "./assets/right.svg";
 
         //iconos seccion trending
         botonLeftTrending.attributes.src.value = "./assets/button-slider-left.svg";
-        botonRightTrending.attributes.src.value = "./assets/Button-Slider-right.svg";
+        botonRightTrending.attributes.src.value = "./assets/right.svg";
 
         // boton ver mas
         botonVerMasGifos.attributes.src.value = "./assets/CTA-ver-mas.svg";
