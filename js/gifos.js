@@ -170,7 +170,6 @@ function maximizarGifo(gifos, i, array) {
     }
 }
 
-
 // Agrega o remueve gifos favoritos del localStorage
 function gifoFavorito(favorito, gifo) {
 
