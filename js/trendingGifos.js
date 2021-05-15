@@ -78,7 +78,7 @@ botonRightTrending.addEventListener("click", () => {
 
 botonRightTrending.addEventListener("mouseout", () => {
     if (modoActual === "D") {
-        botonRightTrending.setAttribute("src", "./assets/Button-slider-right.svg")
+        botonRightTrending.setAttribute("src", "./assets/Button-Slider-right.svg")
     } else {
         botonRightTrending.setAttribute("src", "./assets/button-slider-right-md-noct.svg")
     }
