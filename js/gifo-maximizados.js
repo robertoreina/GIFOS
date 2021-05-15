@@ -66,7 +66,7 @@ botonRightGifoMax.addEventListener("click", () => {
 
 botonRightGifoMax.addEventListener("mouseout", () => {
     if (modoActual === "D") {
-        botonRightGifoMax.setAttribute("src", "./assets/Button-Slider-right.svg")
+        botonRightGifoMax.setAttribute("src", "./assets/right.svg");
     } else {
         botonRightGifoMax.setAttribute("src", "./assets/button-slider-right-md-noct.svg")
     }
