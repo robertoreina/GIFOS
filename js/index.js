@@ -172,6 +172,7 @@ inputBuscador.addEventListener("keypress", (e) => {
 
     // Ejecucion de funcion Buscar en caso de que se presione INTRO
     if (e.keyCode === 13 && inputBuscador.value != '') {
+        buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
         buscarGifos(inputBuscador.value);
     }
 });
@@ -200,6 +201,7 @@ botonBusquedaInactiva.addEventListener("click", () => {
 })
 // Evento Click del boton buscar 
 botonBusquedaActiva.addEventListener("click", () => {
+    buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
     buscarGifos(inputBuscador.value);
 })
 
@@ -232,7 +234,7 @@ function buscadorActivoInactivo(estado) {
 //busqueda de gifos
 function buscarGifos(buscar) {
 
-    buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
+    // buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
 
     inputBuscador.value = "";
     let titResultados = document.getElementById("titResultados");
@@ -390,6 +392,7 @@ function pintarSugerenciasBusquedas() {
 
         sugerenciasBusqueda.addEventListener("click", () => {
             inputBuscador.value = sugerenciasBusqueda.innerHTML
+            buscadorActivoInactivo(false); // Restablece estilos iniciales del buscador
             buscarGifos(inputBuscador.value);
         })
     });
